@@ -1,0 +1,628 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>vincular_centro_custo</processId>
+    </processDefinitionPK>
+    <processDescription>Vincular Usuário X Centro de Custo</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>true</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>Custos</categoryId>
+    <managerEngineAllocationId></managerEngineAllocationId>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>false</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>1</complementsLevel>
+    <notifyRequisitionerComplements>true</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>true</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>Vincular Usuário X Centro de Custo</processId>
+      <version>26</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>523833</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>2</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>false</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </processStatePK>
+      <stateName>Início</stateName>
+      <stateDescription>Início</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>140</positionX>
+      <positionY>110</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </processStatePK>
+      <stateName>Aprovação Custos</stateName>
+      <stateDescription>Aprovação Custos</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>28800</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;custos_vincula_cc&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>110</positionX>
+      <positionY>310</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </processStatePK>
+      <stateName>Retorno solicitante</stateName>
+      <stateDescription>Retorno solicitante</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>190</positionX>
+      <positionY>50</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>24</sequence>
+      </processStatePK>
+      <stateName>Aprovar</stateName>
+      <stateDescription>Aprovar</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>190</positionX>
+      <positionY>160</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>6</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>280</positionX>
+      <positionY>220</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>26</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;aprov_custos&quot;) == &quot;false&quot;</condition>
+      <destinationSequenceId>4</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;cad_user_br&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>26</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;aprov_custos&quot;) == &quot;true&quot;</condition>
+      <destinationSequenceId>6</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <linkSequence>7</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>1</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <linkSequence>23</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>4</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <linkSequence>25</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>24</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <linkSequence>26</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>4</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <linkSequence>27</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterTaskComplete</eventId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterTaskComplete(colleagueId,nextSequenceId,userList){}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeStateEntry</eventId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeStateEntry(sequenceId){&#xd;
+		var arrayUser	    = new Array();&#xd;
+		var numProcesso = getValue(&quot;WKNumProces&quot;);&#xd;
+		var atividade = parseInt(getValue(&quot;WKNumState&quot;)); &#xd;
+		var atividade_destino = parseInt(getValue(&quot;WKNextState&quot;));&#xd;
+		&#xd;
+		&#xd;
+		try{&#xd;
+			&#xd;
+		if (sequenceId == 6){&#xd;
+						&#xd;
+			&#xd;
+			var fieldsForm          = hAPI.getCardData(parseInt(getValue(&quot;WKNumProces&quot;)));&#xd;
+			log.info(&quot;fieldsForm -  &quot; + fieldsForm);&#xd;
+			var fields		        = fieldsForm.keySet().iterator();&#xd;
+			log.info(&quot;Campos no keySet: &quot; + fieldsForm.keySet());  // Verifique as chaves disponíveis&#xd;
+			log.info(&quot;Tipo de fieldsForm: &quot; + typeof fieldsForm);&#xd;
+			log.info(&quot;fields - &quot; + fields);&#xd;
+			&#xd;
+			while (fields.hasNext()) {&#xd;
+				log.info(&quot;Iago entrou no while 123&quot;);&#xd;
+			    &#xd;
+			    var id = fields.next();&#xd;
+			    log.info(&quot;id123 - &quot; + id);&#xd;
+			    &#xd;
+			    &#xd;
+			    if (id.match(/idtbVinculaCC___/)) {&#xd;
+					var aux = id.split(&quot;___&quot;);&#xd;
+					id = aux[1];				&#xd;
+					var camposTabela = new Object();				&#xd;
+					camposTabela.id = new String (fieldsForm.get(&quot;idtbVinculaCC___&quot; + id));&#xd;
+					&#xd;
+					log.info(&quot;==========&gt; Id: &quot; + id);&#xd;
+					log.info(&quot;==========&gt; Campos tabela: &quot; + camposTabela.id);&#xd;
+					&#xd;
+					camposTabela[&quot;cod_usuario&quot;]		 = new String(fieldsForm.get(&quot;cod_usuario___&quot; + id));&#xd;
+					camposTabela[&quot;cod_centro_custo&quot;]		     = new String(fieldsForm.get(&quot;cod_centro_custo___&quot; + id));&#xd;
+					&#xd;
+					log.info(&quot;Iago12345 - &quot; + camposTabela[&quot;cod_usuario&quot;]);&#xd;
+					log.info(&quot;Iago12345 - &quot; + camposTabela[&quot;cod_centro_custo&quot;]);&#xd;
+					&#xd;
+					&#xd;
+					arrayUser.push(camposTabela);&#xd;
+				&#xd;
+			    }&#xd;
+			    &#xd;
+			}&#xd;
+			&#xd;
+			var paramUser = new Object();&#xd;
+			paramUser.dataType = &quot;longchar&quot;;&#xd;
+			paramUser.name = &quot;pUser&quot;;&#xd;
+			paramUser.type = &quot;input&quot;;&#xd;
+			paramUser.value = JSON.stringify(arrayUser);&#xd;
+			&#xd;
+			 var codErro = new Object();&#xd;
+			    codErro.type = &quot;integer&quot;;&#xd;
+			    codErro.name = &quot;codErro&quot;;&#xd;
+			    codErro.label = &quot;codErro&quot;;	&#xd;
+			    &#xd;
+			    var msgErro = new Object();&#xd;
+			    msgErro.type = &quot;character&quot;;&#xd;
+			    msgErro.name = &quot;msgErro&quot;;&#xd;
+			    msgErro.label = &quot;msgErro&quot;;	    &#xd;
+			    &#xd;
+			    var camposTempTable = new Object();&#xd;
+			    camposTempTable.name = &quot;tt-erro&quot;;&#xd;
+			    camposTempTable.records = new Array();&#xd;
+			    camposTempTable.fields = [codErro, msgErro];&#xd;
+			     &#xd;
+			    var  ttErro = new Object();&#xd;
+			    ttErro.dataType = &quot;temptable&quot;;&#xd;
+			    ttErro.name = &quot;tt-erro&quot;;&#xd;
+			    ttErro.type = &quot;output&quot;;&#xd;
+			    ttErro.value = camposTempTable;&#xd;
+		 &#xd;
+			&#xd;
+			var params = [paramUser, ttErro];	    	&#xd;
+			&#xd;
+			var jsonParams = JSON.stringify(params);&#xd;
+			log.info(&quot;JSON enviado para o Progress: &quot; + jsonParams);&#xd;
+						&#xd;
+			    var serviceProvider = ServiceManager.getService(&apos;WSEXECBO&apos;);&#xd;
+			    var serviceLocator = serviceProvider.instantiate(&apos;com.totvs.framework.ws.execbo.service.WebServiceExecBO&apos;);&#xd;
+			    var service = serviceLocator.getWebServiceExecBOPort();			&#xd;
+			    var token = service.userLogin(&quot;acordosfluig&quot;);&#xd;
+			    var response = service.callProcedureWithToken(token, &quot;especificos/ems2/fluig/api_vincula_centro_custo.p&quot;, &quot;pi-vincula-centro-custo&quot;, jsonParams);&#xd;
+			    &#xd;
+			&#xd;
+		    }&#xd;
+		} catch(e){&#xd;
+		    throw &quot;ERRO AO INTEGRAR OS DADOS COM ERP. MENSAGEM: &quot; + e.message;&#xd;
+		}&#xd;
+	&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list/>
+  <list>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>451</height>
+      <width>761</width>
+      <positionX>50</positionX>
+      <positionY>20</positionY>
+      <stateName>Vincular Centro de Custo</stateName>
+      <type>1</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>82b0b7</color>
+      <height>225</height>
+      <width>731</width>
+      <positionX>80</positionX>
+      <positionY>20</positionY>
+      <stateName>Solicitante</stateName>
+      <type>2</type>
+      <parentSequence>1</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>adc9ac</color>
+      <height>226</height>
+      <width>731</width>
+      <positionX>80</positionX>
+      <positionY>245</positionY>
+      <stateName>Custos</stateName>
+      <type>2</type>
+      <parentSequence>1</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>1</version>
+        <sequence>3</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>vincular_centro_custo</processId>
+        <version>26</version>
+        <linkSequence>23</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>415</positionX>
+      <positionY>352</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>vincular_centro_custo</processId>
+      <processVersion>26</processVersion>
+      <stateSequence>2</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description>Vincular Centro de Custo</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>vincular_centro_custo</processId>
+      <processVersion>26</processVersion>
+      <stateSequence>2</stateSequence>
+      <appKey>approval</appKey>
+      <appField>description</appField>
+      <description>@[form:usuario] @[form:centro_custo]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>vincular_centro_custo</processId>
+      <processVersion>26</processVersion>
+      <stateSequence>2</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description>@[form:usuario] @[form:centro_custo]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>vincular_centro_custo</processId>
+      <processVersion>26</processVersion>
+      <stateSequence>2</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description>6</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>vincular_centro_custo</processId>
+      <processVersion>26</processVersion>
+      <stateSequence>2</stateSequence>
+      <appKey>approval</appKey>
+      <appField>reject</appField>
+      <description>4</description>
+    </ProcessAppConfiguration>
+  </list>
+  <list/>
+  <list/>
+</list>

@@ -1,0 +1,272 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.mask.min.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide container-fluid">
+	
+		<form name="formCriacaoAlteracaoBloqueioCentroCustos" id="formCriacaoAlteracaoBloqueioCentroCustos" role="form">
+
+			<div class="page-header">
+				<img src="logo.jpg" class="fluig-style-guide img-responsive thumb-profile pull-left">
+				<br>
+				<h3 class="text-center"><strong>Criação/Alteração/Bloqueio de Centro de Custos</strong></h3>
+			</div>
+
+			<br>
+
+			<input type="hidden" name="nomeCustos" id="nomeCustos">
+			<input type="hidden" name="loginCustos" id="loginCustos">
+			<input type="hidden" name="emailCustos" id="emailCustos">
+
+			<div class="panel panel-info" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-person icon-md" aria-hidden="true"></i>
+						<b>Dados Cadastrais</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+
+						<div class="col-md-3">
+							<label for="numDocumento" class="control-label">N° Documento</label>
+							<input type="text" class="form-control input-sm" name="numDocumento" id="numDocumento" readonly placeholder="A ser gerado">
+						</div>
+							<div class="col-md-3">
+								<label for="cad_user_br">Solicitante</label> 
+								<input type="text" class="form-control input-sm" name="cad_user_br" id="cad_user_br" readonly>
+								<input type="hidden" class="form-control input-sm" name="emailRequester" id="emailRequester" readonly>
+							</div>
+							
+							<div class="col-md-4">
+								<label for="cad_nom_user_br">Nome Completo</label> 
+								<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+							</div>
+							
+							<div class="col-md-2">
+								<label for="cad_dt_trans_br">Data Solicitação</label> 
+								<input type="text" class="form-control input-sm" name="cad_dt_trans_br" id="cad_dt_trans_br" readonly>
+							</div>
+					</div>
+				</div>
+			</div>
+			
+
+				<div id="solicitante">
+
+					<div class="panel panel-info">
+						<div class="panel-heading ">
+							<h3 class="panel-title"><i class="flaticon flaticon-news icon-md" aria-hidden="true"></i>
+								<b>Dados da Solicitação</b>
+							</h3>
+						</div>
+						<div class="panel-body">
+			
+			<div class="row form-group">							
+				
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label for="rb_tipo_solic" class="control-label">Tipo de solicitação<span class="text-danger"><strong>*</strong></span></label>
+					<div class="custom-radio custom-radio-primary">
+				    	<input type="radio" name="rb_tipo_solic" value="criacao" id="rb_tipo_solic_criacao" onchange="validaTipo(this);">
+				    	<label for="rb_tipo_solic_criacao">Criação</label>
+					</div>					
+					<div class="custom-radio custom-radio-primary">
+				    	<input type="radio" name="rb_tipo_solic" value="alteracao" id="rb_tipo_solic_alteracao" onchange="validaTipo(this);">
+				    	<label for="rb_tipo_solic_alteracao">Alteração</label>
+					</div>
+					<div class="custom-radio custom-radio-primary">
+				    	<input type="radio" name="rb_tipo_solic" value="bloqueio" id="rb_tipo_solic_bloqueio" onchange="validaTipo(this);">
+				    	<label for="rb_tipo_solic_bloqueio">Bloqueio</label>
+					</div>											
+																	
+				</div>	
+											
+			</div>
+
+			<div class="form-group row" id="dvCriacao" hidden>
+				
+				
+				<div class="col-md-2">
+					<label for="codigo" class="control-label">Código</label>
+					<input type="text" class="form-control input-sm" name="codigo" id="codigo">
+				</div>
+					<div class="col-md-4">
+						<label for="titulo">Título</label> 
+						<input type="text" class="form-control input-sm" name="titulo" id="titulo">
+					</div>
+					
+					<div class="col-md-3">
+						<label for="dataInicio">Data início</label> 
+						<input type="text" class="form-control input-sm date" name="dataInicio" id="dataInicio">
+					</div>
+					
+					<div class="col-md-3">
+						<label for="dataValidade">Data Validade</label> 
+						<input type="text" class="form-control input-sm date" name="dataValidade" id="dataValidade">
+					</div>
+			</div>
+
+				
+
+			<div class="row form-group" id="dvAlteracao" hidden>
+
+				<div class="col-md-12">
+
+				<div class="col-md-6 form-group">
+					<label for="centro_custo" class="control-label">Centro de Custo</label>
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" name="centro_custo" id="centro_custo" readonly>
+						<input type="hidden" name="cod_centro_custo" id="cod_centro_custo" readonly>
+						<span id="btncentro_custo" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="centro_custo">
+							<span class="fluigicon fluigicon-zoom-in "></span>
+						</span>
+					</div>
+				</div>
+
+					<div class="col-md-3 form-group">
+						<label for="dtIni">Data início<span class="text-danger"><strong>*</strong></span></label> 
+							<div class="input-group">
+							<input type="text" class="form-control input-sm date" name="dtIni" id="dtIni" readonly>
+							</div>
+					</div>
+
+					<div class="col-md-3 form-group">
+						<label for="dtFim">Data final validade<span class="text-danger"><strong>*</strong></span></label> 
+							<div class="input-group">
+							<input type="text" class="form-control input-sm date" name="dtFim" id="dtFim"  readonly>
+						</div>
+					</div>
+				</div> 
+
+					<div class="col-md-12">
+
+					<div class="col-md-2">
+						<label for="cod_altera" class="control-label">Novo código</label>
+						<input type="text" class="form-control input-sm" name="cod_altera" id="cod_altera">
+					</div>
+						<div class="col-md-4">
+							<label for="tit_altera">Novo título</label> 
+							<input type="text" class="form-control input-sm" name="tit_altera" id="tit_altera">
+						</div>
+						
+						<div class="col-md-3">
+							<label for="dtFim_altera">Nova data de validade</label> 
+							<input type="text" class="form-control input-sm date" name="dtFim_altera" id="dtFim_altera">
+						</div>
+					</div>
+		</div>
+
+		<div class="row form-group" id="dvBloqueio" hidden>
+
+			<div class="col-md-12">
+
+			<div class="col-md-6 form-group">
+				<label for="centro_custo_bloq" class="control-label">Centro de Custo a ser bloqueado</label>
+				<div class="input-group">
+					<input type="text" class="form-control input-sm" name="centro_custo_bloq" id="centro_custo_bloq" readonly>
+					<input type="hidden" name="cod_centro_custo_bloq" id="cod_centro_custo_bloq" readonly>
+					<span id="btncentro_custo_bloq" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="centro_custo_bloq">
+						<span class="fluigicon fluigicon-zoom-in "></span>
+					</span>
+				</div>
+			</div>
+
+			<div class="col-md-3 form-group">
+				<label for="dtIni_bloq">Data início<span class="text-danger"><strong>*</strong></span></label> 
+					<div class="input-group">
+					<input type="text" class="form-control input-sm date" name="dtIni_bloq" id="dtIni_bloq" readonly>
+					</div>
+			</div>
+
+			<div class="col-md-3 form-group">
+				<label for="dtFim_bloq">Data final validade<span class="text-danger"><strong>*</strong></span></label> 
+					<div class="input-group">
+					<input type="text" class="form-control input-sm date" name="dtFim_bloq" id="dtFim_bloq"  readonly>
+				</div>
+			</div>
+			</div>
+
+			<div class="col-md-12">
+			<div class="col-md-3 form-group">
+				<label for="dtBloqueio">Data do Bloqueio<span class="text-danger"><strong>*</strong></span></label> 
+					<div class="input-group">
+					<input type="text" class="form-control input-sm date" name="dtBloqueio" id="dtBloqueio">
+				</div>
+			</div>
+			</div>
+		</div>
+
+		
+
+			
+		
+						</div>
+					</div>
+
+					<div class="panel panel-success" id="dvAprov">
+						<div class="panel-heading ">
+							<h3 class="panel-title"><i class="flaticon flaticon-assignment-turned-in icon-md" aria-hidden="true"></i>
+								<b>Aprovação</b>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group row">
+								<div class="col-md-3">
+									   <label for="aprovador_custos">Aprovador</label> 
+									   <input type="text" class="form-control" name="aprovador_custos" id="aprovador_custos" readonly>
+									   <input type="hidden" name="aprovador_custos_login" id="aprovador_custos_login">
+									   <input type="hidden" name="aprovador_custos_mail" id="aprovador_custos_mail">
+								</div>
+									
+								<div class="col-md-2"> 
+									<label for="dt_aprovador_fase1">Data Movimento</label> 
+									<input type="text" class="form-control" name="dt_aprovador_custos" id="dt_aprovador_custos" readonly>
+								</div>
+							</div>
+		
+							<div class="form-group row">
+								<div class="col-md-3 form-group">
+									<label>Aprovado?</label>
+							<div class="radio">
+								<label>
+									<input name="aprov_custos" id="aprov_custos" value="true" type="radio"> 
+										<span class="">Sim</span> 
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input name="aprov_custos" id="aprov_custos" value="false" type="radio">
+									<span class="">Não</span>
+								</label>
+							</div>
+
+						</div>
+						<div class="col-md-8"> 
+							<div class="form-group" id="dvHasError_just_aprov">
+								<label for="just_aprov">Justificativa</label> 
+								<textarea class="form-control" name="just_aprov" id="just_aprov" rows="5"></textarea>
+							</div>	
+						</div>
+							</div>
+		
+						</div>
+					</div>
+				</div>
+
+				
+
+		</form>
+</body>
+</html>

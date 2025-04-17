@@ -1,0 +1,202 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.mask.min.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+</head>
+
+<body>
+	<form name="form" role="form" onLoad="form">
+		<div class="fluig-style-guide">
+		
+			<input type="hidden" name="num_atv" id="num_atv"> 
+			<input type="hidden" name="num_process" id="num_process"> 
+			<input type="hidden" name="cad_browser_name" id="cad_browser_name">
+			<input type="hidden" name="cad_browser_version" id="cad_browser_version">
+			
+			<input type="hidden" name="nomeRequester" id="nomeRequester">
+			<input type="hidden" name="loginRequester" id="loginRequester">
+			<input type="hidden" name="emailRequester" id="emailRequester">
+			
+			
+			<div class="page-header">
+				<img src="logo.jpg" class="fluig-style-guide img-responsive thumb-profile pull-left">
+				<br>
+				<h3 class="text-center"><strong>Vincular Usuário X Centro de Custo</strong></h3>
+			</div>
+
+			<br>
+						
+			<div class="panel panel-info" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-person icon-md" aria-hidden="true"></i>
+						<b>Dados da Solicitante</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+
+					<div class="col-md-3">
+						<label for="numDocumento" class="control-label">N° Documento</label>
+						<input type="text" class="form-control input-sm" name="numDocumento" id="numDocumento" readonly placeholder="A ser gerado">
+					</div>
+
+						<div class="col-md-3">
+							<label for="cad_user_br">Solicitante</label> 
+							<input type="text" class="form-control input-sm" name="cad_user_br" id="cad_user_br" readonly>
+						</div>
+						
+						<div class="col-md-4">
+							<label for="cad_nom_user_br">Nome Completo</label> 
+							<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+		
+						</div>
+						
+						<div class="col-md-2">
+							<label for="cad_dt_trans_br">Data Solicitação</label> 
+							<input type="text" class="form-control input-sm" name="cad_dt_trans_br" id="cad_dt_trans_br" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="panel panel-info" id="dvDadosCadastrais">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-news icon-md" aria-hidden="true"></i>
+						<b>Dados da requisição</b>
+					</h3>
+				</div>
+				
+				<div class="panel-body">
+
+					<div id="divAvisoUser" class="paragraph-is-required system-message-information alert alert-info" role="alert">
+						<strong>ATENÇÃO!</strong> Para vincular um usuário a um centro de custo, é necessário que ele esteja cadastrado e <strong>ATIVO</strong> no Datasul. Usuários não cadastrados ou bloqueados/expirados não aparecerão na busca.
+					</div>
+
+							<div class="form-group row">
+								<div class="col-md-12">
+									<div class="table-responsive">
+										<table tablename="tbVinculaCC" class="table table-hover table-condensed" id="tbVinculaCC" noaddbutton="true" nodeletebutton="true">
+											<thead>
+												<tr class="active">
+													<th class="" style="min-width: 400px">Usuário</th>
+													<th class="" style="min-width: 400px">Centro de Custo</th>
+
+													<th class=""></th>
+												</tr>				        				
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<input type="hidden" id="idtbVinculaCC" name="idtbVinculaCC">
+		
+														<div class="input-group">	
+															<div class="form-group" id="dvHasError_usuario">
+																<input name="usuario" id="usuario" type="text" class="form-control input-sm" readonly>
+																<input name="cod_usuario" id="cod_usuario" type="hidden" class="form-control input-sm" readonly>
+															</div>	
+															<span id="btnusuario" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="usuario">
+																<span class="fluigicon fluigicon-zoom-in "></span>
+															</span>
+														</div>	
+													</td>
+													<td>
+														<div class="input-group">	
+															<div class="form-group" id="dvHasError_centro_custo">
+																<input name="centro_custo" id="centro_custo" type="text" class="form-control input-sm" readonly>
+																<input name="cod_centro_custo" id="cod_centro_custo" type="hidden" class="form-control input-sm" readonly>
+															</div>	
+															<span id="btncentro_custo" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="centro_custo">
+																<span class="fluigicon fluigicon-zoom-in "></span>
+															</span>
+														</div>
+													</td>
+													<td>
+														<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+													</td>	
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td class="pull-left">
+														<button onclick="addTableRow('tbVinculaCC'); init()" class="btn btn-sm btn-default" name="btnAdicionausuario" id="btnAdicionausuario" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar usuario
+														</button>
+													</td>
+												</tr>				        				
+											</tfoot>
+										</table>
+									</div> <!--table responsive-->
+								</div> <!-- col -->
+							</div> <!-- row -->
+					
+
+					<div class="panel panel-success" id="dvAprov">
+						<div class="panel-heading ">
+							<h3 class="panel-title"><i class="flaticon flaticon-assignment-turned-in icon-md" aria-hidden="true"></i>
+								<b>Aprovação</b>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group row">
+								<div class="col-md-3">
+									   <label for="aprovador_custos">Aprovador</label> 
+									   <input type="text" class="form-control" name="aprovador_custos" id="aprovador_custos" readonly>
+									   <input type="hidden" name="aprovador_custos_login" id="aprovador_custos_login">
+									   <input type="hidden" name="aprovador_custos_mail" id="aprovador_custos_mail">
+								</div>
+									
+								<div class="col-md-2"> 
+									<label for="dt_aprovador_fase1">Data Movimento</label> 
+									<input type="text" class="form-control" name="dt_aprovador_custos" id="dt_aprovador_custos" readonly>
+								</div>
+							</div>
+		
+							<div class="form-group row">
+								<div class="col-md-3 form-group">
+									<label>Aprovado?</label>
+							<div class="radio">
+								<label>
+									<input name="aprov_custos" id="aprov_custos" value="true" type="radio"> 
+										<span class="">Sim</span> 
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input name="aprov_custos" id="aprov_custos" value="false" type="radio">
+									<span class="">Não</span>
+								</label>
+							</div>
+
+						</div>
+						<div class="col-md-8"> 
+							<div class="form-group" id="dvHasError_just_aprov">
+								<label for="just_aprov">Justificativa</label> 
+								<textarea class="form-control" name="just_aprov" id="just_aprov" rows="5"></textarea>
+							</div>	
+						</div>
+							</div>
+		
+						</div>
+					</div>
+
+					</div>
+				</div>
+			
+		</div>
+	</form>
+</body>
+</html>
+
+
+
+		
