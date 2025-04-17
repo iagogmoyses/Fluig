@@ -5,6 +5,7 @@ Este repositório contém um conjunto de fluxos de processo, formulários, datas
 - forms --> Formulários utilizados nos processos
 - workflow/diagrams --> Diagramas dos processos
 - workflow/scripts --> Scripts de eventos dos processos
+
 ## 🛠️ Tecnologias Utilizadas
 
 - Fluig
@@ -13,3 +14,6 @@ Este repositório contém um conjunto de fluxos de processo, formulários, datas
 - Progress 4GL (Procedures para Zooms)
 - Diagramas BPMN
 - APIs
+
+👨‍💻 Autor
+Desenvolvido por: Iago Gonçalves Moysés
