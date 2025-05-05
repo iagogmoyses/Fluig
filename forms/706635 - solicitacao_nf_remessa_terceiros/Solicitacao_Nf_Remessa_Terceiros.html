@@ -1,0 +1,842 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.mask.min.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+</head>
+
+<body>
+	<form name="form" role="form" onLoad="form">
+		<div class="fluig-style-guide">
+		
+			<input type="hidden" name="num_atv" id="num_atv"> 
+			<input type="hidden" name="num_process" id="num_process"> 
+			<input type="hidden" name="cad_browser_name" id="cad_browser_name">
+			<input type="hidden" name="cad_browser_version" id="cad_browser_version">
+			<input type="hidden" name="htransportadora" id="htransportadora">
+			<input type="hidden" name="hIdentifica" id="hIdentifica">
+			
+			<input type="hidden" name="nomeRequester" id="nomeRequester">
+			<input type="hidden" name="loginRequester" id="loginRequester">
+			<input type="hidden" name="emailRequester" id="emailRequester">
+			
+			<input type="hidden" name="cad_user_fiscal" id="cad_user_fiscal">
+			<input type="hidden" name="nomeFiscal" id="nomeFiscal">
+			<input type="hidden" name="loginFiscal" id="loginFiscal">
+			<input type="hidden" name="emailFiscal" id="emailFiscal">
+			
+
+			<input type="hidden" name="diasParado" id="diasParado">
+			
+			
+			<div class="panel panel-primary" id="pnlPrincipal">
+				<div class="panel-body">
+					<h1 style="text-align:center">
+                    	<img src="logo.jpg" alt="" style="max-width:100px; width: auto;" align="middle" />
+                        <b>Solicitação de Nota Fiscal de Remessa para Terceiros</b>
+                    </h1>
+				</div>
+			</div>
+						
+			<div class="panel panel-primary" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Dados da Solicitante</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="cad_user_br">Solicitante</label> 
+							<input type="text" class="form-control input-sm" name="cad_user_br" id="cad_user_br" readonly>
+						</div>
+						
+						<div class="col-md-4">
+							<label for="cad_nom_user_br">Nome Completo</label> 
+							<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+		
+						</div>
+						
+						<div class="col-md-2">
+							<label for="cad_dt_trans_br">Data Solicitação</label> 
+							<input type="text" class="form-control input-sm" name="cad_dt_trans_br" id="cad_dt_trans_br" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-primary" id="dvTipoSolic">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<b> Tipo de Remessa </b>
+					</h3>
+				</div>
+				<div class="row form-group">			
+					<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+						<label for="rbTipoSolic" class="control-label">Tipo de Solicitação<span class="text-danger"> <strong>*</strong></span></label>
+						  <div class="radio-options">
+							<div class="radio">
+								<label>
+								<input type="radio" name="rbTipoSolic" value="comodato" required="required">Remessa de Comodato</label>
+							</div>
+							<div class="radio">
+								<label>
+								<input type="radio" name="rbTipoSolic" value="armazenagem" required="required">Remessa de Armazenagem</label>
+							</div>
+							<div class="radio">
+								<label>
+								<input type="radio" name="rbTipoSolic" value="conserto" required="required">Remessa de Conserto</label>
+							</div>
+						</div>
+					</div>  	
+				</div>
+			</div>
+			
+			<div class="panel panel-primary" id="dvDadosCadastrais">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Dados da NF</b>
+					</h3>
+				</div>
+				
+				<div class="panel-body">
+		
+					<div class="form-group row">
+						<div class="col-md-5">
+							<label for="estab_origem">Estabelecimento de Origem<span class="text-danger"><strong>*</strong></span></label>
+							<div class="input-group">
+								<div class="form-group" id="dvHasError_estab_origem">
+									<input type="text" class="form-control input-sm" name="estab_origem" id="estab_origem" readonly>
+								</div>
+								<span id="btnestab_origem" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="estab_origem">
+									<span class="fluigicon fluigicon-zoom-in "></span>
+								</span>
+							</div>
+						</div>
+					</div>
+
+                     <div class="form-group row">
+						<div class="col-md-5">
+
+							<label for="fornecedor">Fornecedor<span class="text-danger"><strong>*</strong></span></label> 
+                        	<div class="input-group">
+                        		<div class="form-group" id="dvHasError_fornecedor">
+									<input name="fornecedor" id="fornecedor" type="text" class="form-control input-sm" readonly>
+									<input name="hfornecedor" id="hfornecedor" type="hidden">
+								</div>	
+								<span id="btncad_fornecedor" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="fornecedor">
+									<span class="fluigicon fluigicon-zoom-in "></span>
+								</span>
+							</div>	
+						</div>
+                    </div>
+
+                    <div class="form-group row">
+						
+						<div class="col-md-5">
+							<label for="transportadora">Transportadora<span class="text-danger"><strong>*</strong></span></label> 
+                        	<div class="input-group">
+                        		<div class="form-group" id="dvHasError_transportadora">
+									<input name="transportadora" id="transportadora" type="text" class="form-control input-sm" readonly>
+								</div>	
+								<span id="btncad_transportadora" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="transportadora">
+									<span class="fluigicon fluigicon-zoom-in "></span>
+								</span>
+							</div>	
+						</div>
+					</div>
+
+					<div class="panel panel-default" id="divPanelItem">
+											
+						<div class="panel-heading">
+							<h3 class="panel-title"><span class="fluigicon fluigicon-shopping-cart"></span> Itens</h3>
+						</div>
+		
+						<div class="panel-body">
+		
+							<div class="row">
+								<div class="col-md-12">
+									<div class="table-responsive">
+										<table tablename="tbItem" class="table table-hover table-condensed" id="tbItem" noaddbutton="true" nodeletebutton="true">
+											<thead>
+												<tr class="active">
+													<th class="" style="min-width: 400px">Item</th>
+													<th class="" style="min-width: 140px">Unidade de Medida</th>
+													<th class="" style="min-width: 140px">Valor unitário</th>
+													<th class="fs-break-text" style="min-width: 100px">Quantidade</th>
+													<th class="fs-break-text" style="min-width: 140px">Valor total</th>
+													<th class="fs-break-text" style="min-width: 400px">Localização</th>
+													<th class="" style="min-width: 140px">Depósito de saída</th>
+													<th class="fs-break-text" style="min-width: 140px">Lote</th>
+
+													<th class=""></th>
+												</tr>				        				
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<input type="hidden" id="idTbItem" name="idTbItem">
+		
+														<div class="input-group">	
+															<div class="form-group" id="dvHasError_item">
+																<input name="item" id="item" type="text" class="form-control input-sm" readonly>
+																<input name="codItem" id="codItem" type="hidden" class="form-control input-sm" readonly>
+																<input name="controlaLote" id="controlaLote" type="hidden" class="form-control input-sm" readonly>
+																<input name="tipoContr" id="tipoContr" type="hidden" class="form-control input-sm" readonly>
+															</div>	
+															<span id="btnitem" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="item">
+																<span class="fluigicon fluigicon-zoom-in "></span>
+															</span>
+														</div>	
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control input-sm" name="unidade" id="unidade" readonly>
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<span class="input-group-addon input-sm fluigicon-sm"><strong>R$</strong></span>	
+															<input type="number" class="form-control input-sm money" name="valor" id="valor">
+														</div>
+													</td>				        	
+													<td>
+														<div class="input-group">
+															<input type="number" class="form-control input-sm" name="qtd" id="qtd">
+														</div>
+													</td>				        							
+													<td>
+														<div class="input-group">
+															<span class="input-group-addon input-sm fluigicon-sm"><strong>R$</strong></span>		
+															<input type="number" class="form-control input-sm money" name="valorTotal" id="valorTotal" readonly>
+														</div>
+													</td>	
+													<td>
+														<div class="input-group">
+															<div class="form-group" id="dvHasError_localizacao">
+																<input name="localizacao" id="localizacao" type="text" class="form-control input-sm" readonly>
+															</div>	
+															<span id="btnlocalizacao" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="localizacao">
+																<span class="fluigicon fluigicon-zoom-in "></span>
+															</span>
+														</div>
+													</td>	
+													<td>
+														<div class="input-group">
+															<input name="codDepos" id="codDepos" type="text" class="form-control input-sm" readonly>
+														</div>				        					
+													</td>
+													<td>
+														<div class="input-group">
+															<input name="lote" id="lote" type="text" class="form-control input-sm" readonly>
+															<input name="qtidade_atu" id="qtidade_atu" type="hidden" class="form-control input-sm" readonly>
+														</div>				        					
+													</td>
+													<td>
+														<button onclick="validaSaldo(this);" id="btnValidaSaldo" name="btnValidaSaldo" class="btn btn-info" type="button" style="margin-bottom: 20px;">Validar saldo do item</button>
+													</td>
+													<td>
+														<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+													</td>	
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td class="pull-left">
+														<button onclick="addTableRow('tbItem'); init()" class="btn btn-sm btn-default" name="btnAdicionaItem" id="btnAdicionaItem" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar Item
+														</button>
+													</td>
+												</tr>				        				
+											</tfoot>
+										</table>
+									</div> <!--table responsive-->
+								</div> <!-- col -->
+							</div> <!-- row -->
+						</div> <!-- panel body -->
+					</div> <!-- panel -->
+
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="valorTotalNF">Valor total da NF</label> 
+							<div class="form-group" id="dvHasError_valorTotalNF">
+								<div class="input-group">
+								<span
+								class="input-group-addon input-sm fluigicon-sm"><strong>R$</strong></span>
+								<input type="number" class="form-control input-sm money" name="valorTotalNF" id="valorTotalNF" readonly>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row form-group">			
+						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+							<label for="frete" class="control-label">Modalidade de frete<span class="text-danger"> <strong>*</strong></span></label>
+							  <div class="radio-options">
+								<div class="radio">
+									<label>
+									<input type="radio" name="frete" value="forno" required="required">Forno</label>
+								</div>
+								<div class="radio">
+									<label>
+									<input type="radio" name="frete" value="fornec" required="required">Fornecedor</label>
+								</div>
+							</div>
+						</div>  	
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2">
+						<label>Data de Saída<span class="text-danger"><strong>*</strong></span></label>
+						<input type="text" class="form-control input-sm date" name="DataSaida" mask="00/00/0000" maxlength="10" data-only-numbers="true">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="qtdVolumes">Quantidade de volumes<span class="text-danger"><strong>*</strong></span></label> 
+							<div class="form-group" id="dvHasError_qtdVolumes">
+								<div class="input-group">
+								<input type="number" class="form-control" name="qtdVolumes" id="qtdVolumes">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+							<div class="col-md-12 form-group">
+								<label for="obs" class="control-label">Observações<span class="text-danger"><strong>*</strong></span></label>
+								<textarea class="form-control" rows="3" name="observ" id="observ" value=""></textarea>
+							</div>
+						
+						</div>
+
+					<div class="form-group" id="dvObs">
+					<div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="obs" class="control-label">Observação Parametrização</label>
+                            <textarea class="form-control" rows="3" name="obs" id="obs" value=""></textarea>
+                        </div>
+                    </div>
+					</div>
+
+					<div class="form-group" id="divComodato">
+						<div class="row form-group">			
+							<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+								<label for="rbTipoComodato" class="control-label">Tipo de Remessa de Comodato<span class="text-danger"> <strong>*</strong></span></label>
+		                  		<div class="radio-options">
+				                    <div class="radio">
+				                        <label>
+				                        <input type="radio" name="rbTipoComodato" value="forno" required="required" onchange="showComodato(this)">Nota Emitida pela Forno</label>
+				                    </div>
+									<div class="radio">
+				                        <label>
+				                        <input type="radio" name="rbTipoComodato" value="cliente" required="required" onchange="showComodato(this)">Nota Emitida pelo Cliente</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">			
+							<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+								<label for="tipoRetornoComod" class="control-label">Tipo de Retorno<span class="text-danger"> <strong>*</strong></span></label>
+		                  		<div class="radio-options">
+				                    <div class="radio">
+				                        <label>
+				                        <input type="radio" name="tipoRetornoComod" value="total" required="required" onchange="showItens(this)">Total</label>
+				                    </div>
+									<div class="radio">
+				                        <label>
+				                        <input type="radio" name="tipoRetornoComod" value="parcial" required="required" onchange="showItens(this)">Parcial</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group" id="divComodFor" hidden>
+							<div class="form-group row">	
+									<div class="col-md-5">
+										<label for="EstabComodFor">Estabelecimento</label>
+										<div class="input-group">
+											<div class="form-group" id="dvHasError_EstabComodFor">
+												<input type="text" class="form-control input-sm" name="EstabComodFor" id="EstabComodFor" readonly>
+											</div>
+											<span id="btnEstabComodFor" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="EstabComodFor">
+												<span class="fluigicon fluigicon-zoom-in "></span>
+											</span>
+										</div>
+									</div>
+									<input type="hidden" id="num_estab_comod_for" name="num_estab_comod_for">	
+			                    
+									<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+										<label for="notaComodFor" class="control-label">Nota de Saída</label>
+										<input type="zoom" id="notaComodFor" name="notaComodFor" class="form-control input-sm" required="required"
+										   data-zoom="{'displayKey':'nrNotaFis',
+													   'datasetId':'ems_consulta_nfs',
+													   'filterValues':'',
+													   'maximumSelectionLength':'1',
+													   'placeholder':'Selecione a nota fiscal',
+													   'searchField':'nrNotaFis',
+													   'fields':[
+													   {
+														'field':'nrNotaFis',
+														'label':'Nota',
+														'standard':'true'											
+													   },
+													   {
+														 'field':'serie',
+														 'label':'Série',											 
+														 'visible':'true'			
+														}												
+														]}"/>
+									</div>
+		                    	<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+		                    		<label for="clienteComodFor" class="control-label">Cliente</label>
+		                    		<input type="text" class="form-control input-sm" name="clienteComodFor" id="clienteComodFor" readonly>
+	                    		</div>
+                    		</div>
+                    		<div class="panel panel-default" id="divPanelItemComod" hidden>
+											
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="fluigicon fluigicon-shopping-cart"></span> Itens</h3>
+								</div>
+				
+								<div class="panel-body">
+				
+									<div class="row">
+										<div class="col-md-12">
+											<div class="table-responsive">
+												<table tablename="tbItemComod" class="table table-hover table-condensed" id="tbItemComod" noaddbutton="true" nodeletebutton="true">
+													<thead>
+														<tr class="active">
+															<th class="" style="min-width: 400px">Item</th>
+															<th class="fs-break-text" style="min-width: 100px">Quantidade</th>
+		
+															<th class=""></th>
+														</tr>				        				
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<input type="hidden" id="idTbItemComod" name="idTbItemComod">
+				
+																<div class="input-group">	
+																	<div class="form-group" id="dvHasError_itemComod">
+																		<input name="itemComod" id="itemComod" type="text" class="form-control input-sm" readonly>
+																		<input name="codItemComod" id="codItemComod" type="hidden" class="form-control input-sm" readonly>
+																	</div>	
+																	<span id="btnitemComod" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="itemComod">
+																		<span class="fluigicon fluigicon-zoom-in "></span>
+																	</span>
+																</div>	
+															</td>				        	
+															<td>
+																<div class="input-group">
+																	<input type="number" class="form-control input-sm" name="qtdComod" id="qtdComod">
+																</div>
+															</td>				        							
+															<td>
+																<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+															</td>	
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td class="pull-left">
+																<button onclick="addTableRow('tbItemComod'); init()" class="btn btn-sm btn-default" name="btnAdicionaItemComod" id="btnAdicionaItem" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar Item
+																</button>
+															</td>
+														</tr>				        				
+													</tfoot>
+												</table>
+											</div> <!--table responsive-->
+										</div> <!-- col -->
+									</div> <!-- row -->
+								</div> <!-- panel body -->
+							</div> <!-- panel -->
+		
+                		</div> 
+            			<div class="form-group" id="divComodCli" hidden>
+							<div class="form-group row">	
+								<div class="col-md-5">
+									<label for="EstabComodCli">Estabelecimento</label>
+									<div class="input-group">
+										<div class="form-group" id="dvHasError_EstabComodCli">
+											<input type="text" class="form-control input-sm" name="EstabComodCli" id="EstabComodCli" readonly>
+										</div>
+										<span id="btnEstabComodCli" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="EstabComodCli">
+											<span class="fluigicon fluigicon-zoom-in "></span>
+										</span>
+									</div>
+								</div>
+								<input type="hidden" id="num_estab_comod_cli" name="num_estab_comod_cli">	
+							
+			                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+			                    	<label for="notaComodCli" class="control-label">Número Nota Cliente</label>
+			                    	<input type="text" class="form-control input-sm" name="notaComodCli" id="notaComodCli">
+		                    	</div> 
+		                    	<div class="col-md-5">
+									<label for="clienteComodCli">Cliente</label>
+									<div class="input-group">
+										<div class="form-group" id="dvHasError_clienteComodCli">
+											<input type="text" class="form-control input-sm" name="clienteComodCli" id="clienteComodCli" readonly>
+										</div>
+										<span id="btnclienteComodCli" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="clienteComodCli">
+											<span class="fluigicon fluigicon-zoom-in "></span>
+										</span>
+									</div>
+								</div>
+                    		</div>
+
+							<div class="panel panel-default" id="divPanelItemComodCli" hidden>
+											
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="fluigicon fluigicon-shopping-cart"></span> Itens</h3>
+								</div>
+				
+								<div class="panel-body">
+				
+									<div class="row">
+										<div class="col-md-12">
+											<div class="table-responsive">
+												<table tablename="tbItemComodCli" class="table table-hover table-condensed" id="tbItemComodCli" noaddbutton="true" nodeletebutton="true">
+													<thead>
+														<tr class="active">
+															<th class="" style="min-width: 400px">Item</th>
+															<th class="fs-break-text" style="min-width: 100px">Quantidade</th>
+		
+															<th class=""></th>
+														</tr>				        				
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<input type="hidden" id="idTbItemComodCli" name="idTbItemComodCli">
+				
+																<div class="input-group">	
+																	<div class="form-group" id="dvHasError_itemComodCli">
+																		<input name="itemComodCli" id="itemComodCli" type="text" class="form-control input-sm" readonly>
+																		<input name="codItemComodCli" id="codItemComodCli" type="hidden" class="form-control input-sm" readonly>
+																	</div>	
+																	<span id="btnitemComodCli" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="itemComodCli">
+																		<span class="fluigicon fluigicon-zoom-in "></span>
+																	</span>
+																</div>	
+															</td>				        	
+															<td>
+																<div class="input-group">
+																	<input type="number" class="form-control input-sm" name="qtdComodCli" id="qtdComodCli">
+																</div>
+															</td>				        							
+															<td>
+																<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+															</td>	
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td class="pull-left">
+																<button onclick="addTableRow('tbItemComodCli'); init()" class="btn btn-sm btn-default" name="btnAdicionaItemComodCli" id="btnAdicionaItem" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar Item
+																</button>
+															</td>
+														</tr>				        				
+													</tfoot>
+												</table>
+											</div> <!--table responsive-->
+										</div> <!-- col -->
+									</div> <!-- row -->
+								</div> <!-- panel body -->
+							</div> <!-- panel -->
+						</div>
+					</div>
+
+						<div class="form-group" id="divArmaz">
+							<div class="row form-group">			
+								<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+									<label for="tipoRetornoArmaz" class="control-label">Tipo de Retorno<span class="text-danger"> <strong>*</strong></span></label>
+									  <div class="radio-options">
+										<div class="radio">
+											<label>
+											<input type="radio" name="tipoRetornoArmaz" value="total" required="required" onchange="showItens(this)">Total</label>
+										</div>
+										<div class="radio">
+											<label>
+											<input type="radio" name="tipoRetornoArmaz" value="parcial" required="required" onchange="showItens(this)">Parcial</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">	
+								<div class="col-md-5">
+									<label for="EstabArmaz">Estabelecimento</label>
+									<div class="input-group">
+										<div class="form-group" id="dvHasError_EstabArmaz">
+											<input type="text" class="form-control input-sm" name="EstabArmaz" id="EstabArmaz" readonly>
+										</div>
+										<span id="btnEstabArmaz" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="EstabArmaz">
+											<span class="fluigicon fluigicon-zoom-in "></span>
+										</span>
+									</div>
+								</div>
+	
+								<input type="hidden" id="num_estab_armaz" name="num_estab_armaz">
+	
+								<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+									<label for="notaArmaz" class="control-label">Número Nota Cliente</label>
+									<input type="text" class="form-control input-sm" name="notaArmaz" id="notaArmaz">
+								</div>
+								<div class="col-xs-5 col-sm-3 col-md-3 col-lg-2">
+									<div class="form-field" data-type="combo" data-show-properties="" data-field-name="depArmaz" id="depArmaz" style="max-width: 200px">
+										<label>Depósito</label><span class="required text-danger"><strong>*</strong></span>
+										<select class="form-control" name="depArmaz" id="depArmaz" required="required">
+											<option value=""></option>
+											<option value="ALM">ALM</option>
+											<option value="AVA">AVA</option>
+											<option value="DAC">DAC</option>
+											<option value="DEV">DEV</option>
+											<option value="INV">INV</option>
+											<option value="PAF">PAF</option>
+											<option value="PRD">PRD</option>
+											<option value="SJP">SJP</option>
+											<option value="VIT">VIT</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default" id="divPanelItemArmaz" hidden>
+											
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="fluigicon fluigicon-shopping-cart"></span> Itens</h3>
+								</div>
+				
+								<div class="panel-body">
+				
+									<div class="row">
+										<div class="col-md-12">
+											<div class="table-responsive">
+												<table tablename="tbItemArmaz" class="table table-hover table-condensed" id="tbItemArmaz" noaddbutton="true" nodeletebutton="true">
+													<thead>
+														<tr class="active">
+															<th class="" style="min-width: 400px">Item</th>
+															<th class="fs-break-text" style="min-width: 100px">Quantidade</th>
+		
+															<th class=""></th>
+														</tr>				        				
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<input type="hidden" id="idTbItemArmaz" name="idTbItemArmaz">
+				
+																<div class="input-group">	
+																	<div class="form-group" id="dvHasError_itemArmaz">
+																		<input name="itemArmaz" id="itemArmaz" type="text" class="form-control input-sm" readonly>
+																		<input name="codItemArmaz" id="codItemArmaz" type="hidden" class="form-control input-sm" readonly>
+																	</div>	
+																	<span id="btnitemArmaz" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="itemArmaz">
+																		<span class="fluigicon fluigicon-zoom-in "></span>
+																	</span>
+																</div>	
+															</td>				        	
+															<td>
+																<div class="input-group">
+																	<input type="number" class="form-control input-sm" name="qtdArmaz" id="qtdArmaz">
+																</div>
+															</td>				        							
+															<td>
+																<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+															</td>	
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td class="pull-left">
+																<button onclick="addTableRow('tbItemArmaz'); init()" class="btn btn-sm btn-default" name="btnAdicionaItemArmaz" id="btnAdicionaItem" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar Item
+																</button>
+															</td>
+														</tr>				        				
+													</tfoot>
+												</table>
+											</div> <!--table responsive-->
+										</div> <!-- col -->
+									</div> <!-- row -->
+								</div> <!-- panel body -->
+							</div> <!-- panel -->
+						</div>
+
+						<div class="form-group" id="divConserto">
+							<div class="row form-group">			
+								<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+									<label for="tipoRetornoConserto" class="control-label">Tipo de Retorno<span class="text-danger"> <strong>*</strong></span></label>
+									  <div class="radio-options">
+										<div class="radio">
+											<label>
+											<input type="radio" name="tipoRetornoConserto" value="total" required="required" onchange="showItens(this)">Total</label>
+										</div>
+										<div class="radio">
+											<label>
+											<input type="radio" name="tipoRetornoConserto" value="parcial" required="required" onchange="showItens(this)">Parcial</label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">	
+								<div class="col-md-5">
+									<label for="EstabConserto">Estabelecimento</label>
+									<div class="input-group">
+										<div class="form-group" id="dvHasError_EstabConserto">
+											<input type="text" class="form-control input-sm" name="EstabConserto" id="EstabConserto" readonly>
+										</div>
+										<span id="btnEstabConserto" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="EstabConserto">
+											<span class="fluigicon fluigicon-zoom-in "></span>
+										</span>
+									</div>
+								</div>
+
+			                    <input type="hidden" id="num_estab_conserto" name="num_estab_conserto">
+
+			                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+			                    	<label for="notaConserto" class="control-label">Número Nota Fornecedor</label>
+			                    	<input type="text" class="form-control input-sm" name="notaConserto" id="notaConserto">
+		                    	</div>
+		                    	<div class="col-md-5">
+
+									<label for="clienteConserto">Fornecedor</label> 
+									<div class="input-group">
+										<div class="form-group" id="dvHasError_clienteConserto">
+											<input name="clienteConserto" id="clienteConserto" type="text" class="form-control input-sm" readonly>
+											<input name="hclienteConserto" id="hclienteConserto" type="hidden">
+										</div>	
+										<span id="btncad_clienteConserto" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="clienteConserto">
+											<span class="fluigicon fluigicon-zoom-in "></span>
+										</span>
+									</div>	
+								</div>
+                    		</div>
+
+							<div class="panel panel-default" id="divPanelItemConserto" hidden>
+											
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="fluigicon fluigicon-shopping-cart"></span> Itens</h3>
+								</div>
+				
+								<div class="panel-body">
+				
+									<div class="row">
+										<div class="col-md-12">
+											<div class="table-responsive">
+												<table tablename="tbItemConserto" class="table table-hover table-condensed" id="tbItemConserto" noaddbutton="true" nodeletebutton="true">
+													<thead>
+														<tr class="active">
+															<th class="" style="min-width: 400px">Item</th>
+															<th class="fs-break-text" style="min-width: 100px">Quantidade</th>
+		
+															<th class=""></th>
+														</tr>				        				
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<input type="hidden" id="idTbItemConserto" name="idTbItemConserto">
+				
+																<div class="input-group">	
+																	<div class="form-group" id="dvHasError_itemConserto">
+																		<input name="itemConserto" id="itemConserto" type="text" class="form-control input-sm" readonly>
+																		<input name="codItemConserto" id="codItemConserto" type="hidden" class="form-control input-sm" readonly>
+																	</div>	
+																	<span id="btnitemConserto" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="itemConserto">
+																		<span class="fluigicon fluigicon-zoom-in "></span>
+																	</span>
+																</div>	
+															</td>				        	
+															<td>
+																<div class="input-group">
+																	<input type="number" class="form-control input-sm" name="qtdConserto" id="qtdConserto">
+																</div>
+															</td>				        							
+															<td>
+																<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+															</td>	
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td class="pull-left">
+																<button onclick="addTableRow('tbItemConserto'); init()" class="btn btn-sm btn-default" name="btnAdicionaItemConserto" id="btnAdicionaItem" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar Item
+																</button>
+															</td>
+														</tr>				        				
+													</tfoot>
+												</table>
+											</div> <!--table responsive-->
+										</div> <!-- col -->
+									</div> <!-- row -->
+								</div> <!-- panel body -->
+							</div> <!-- panel -->
+                		</div>
+
+					
+
+					<!-- Campo Aprovação Fiscal -->
+					<div class="panel panel-info" id="dvFase1">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <i class="flaticon flaticon-class-check icon-md"></i><b> Aprovar Documentação </b>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="aprovador_fase1">Aprovador</label>
+                                    <input type="text" class="form-control" name="aprovador_fase1" id="aprovador_fase1" readonly>
+                                    <input type="hidden" name="haprovador_fase1_login" id="haprovador_fase1_login">
+                                    <input type="hidden" name="haprovador_fase1_mail" id="haprovador_fase1_mail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <div class="form-group" id="dvHasError_aprov_fase1">
+                                        <label>Aprovar Documentação?</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input name="aprov_fase1" id="aprov_fase1" value="true" type="radio">
+                                                <span class="">Sim</span>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input name="aprov_fase1" id="aprov_fase1" value="false" type="radio">
+                                                <span class="">Não</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group" id="dvHasError_just_fase1">
+                                        <label for="just_fase1">Justificativa</label>
+                                        <textarea class="form-control" name="just_fase1" id="just_fase1" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+					</div>
+				</div>
+			
+		</div>
+	</form>
+</body>
+</html>
+
+
+
+		

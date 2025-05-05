@@ -1,0 +1,368 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.mask.min.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+</head>
+
+<body>
+	<form name="form" role="form" onLoad="form">
+		<div class="fluig-style-guide">
+		
+			<input type="hidden" name="num_atv" id="num_atv"> 
+			<input type="hidden" name="num_process" id="num_process"> 
+			<input type="hidden" name="cad_browser_name" id="cad_browser_name">
+			<input type="hidden" name="cad_browser_version" id="cad_browser_version">
+			<input type="hidden" name="hcentro_custo" id="hcentro_custo">
+			<input type="hidden" name="hIdentifica" id="hIdentifica">
+			
+			<input type="hidden" name="nomeRequester" id="nomeRequester">
+			<input type="hidden" name="loginRequester" id="loginRequester">
+			<input type="hidden" name="emailRequester" id="emailRequester">
+			
+			
+			<input type="hidden" name="nomeController" id="nomeController">
+			<input type="hidden" name="loginController" id="loginController">
+			<input type="hidden" name="emailController" id="emailController">
+			
+			
+			<div class="panel panel-primary" id="pnlPrincipal">
+				<div class="panel-body">
+					<h1 style="text-align:center">
+                    	<img src="logo.jpg" alt="" style="max-width:100px; width: auto;" align="middle" />
+                        <b>Registro de Guias, Multas e Taxas</b>
+                    </h1>
+				</div>
+			</div>
+			
+			<div class="panel panel-danger" id="dvAprovar">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Aprovação</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					
+					<div class="form-group row">
+						<div class="col-md-3">
+							<div class="radio-inline">
+								<label> 
+									<input name="Aprovador" id="Aprovador" value="true" type="radio" onclick="enableField(!this.checked,  'Justificativa');enableField3(this.checked,  'integra');">
+									<span class="">Aprovado</span>
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label> 
+									<input name="Aprovador" id="Aprovador" value="false" type="radio" onclick="enableField(this.checked,  'Justificativa');enableField3(!this.checked,  'integra');">
+									<span class="">Reprovado</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						
+						<div class="col-md-4">
+							<label for="Justificativa">Justificativa</label>
+							<textarea class="form-control" name="Justificativa" id="Justificativa" readonly></textarea>
+						</div>
+					</div>
+				</div>		
+			
+			</div>
+				
+			<div class="panel panel-default" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-favorite-person icon-md" aria-hidden="true"></i>
+						<b>Dados da Solicitante</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="nm_solicitante">Solicitante</label> 
+							<input type="text" class="form-control input-sm" name="nm_solicitante" id="nm_solicitante" readonly>
+						</div>
+						
+						<div class="col-md-4">
+							<label for="cad_nom_user_br">Nome Completo</label>  
+							<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+						</div>
+						
+						<div class="col-md-2">
+							<label for="data_solicitacao">Data Solicitação</label> 
+							<input type="text" class="form-control input-sm" name="data_solicitacao" id="data_solicitacao" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel panel-default" id="dvDadosCadastrais">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-news icon-md" aria-hidden="true"></i>
+						<b>Dados da Solicitação</b>
+					</h3>
+				</div>
+				
+				<div class="panel-body">
+
+					
+					<div id="divAvisoTitulo" class="paragraph-is-required system-message-information alert alert-info" role="alert">O título está disponível no fluxo bas_lote_impl_tit_ap. Gentileza atualizá-lo e informar seu gerente para que a aprovação seja realizada. Em caso de dúvidas, entre em contato com alguém do setor Fiscal.</div>
+					<div id="divCiente" class="row">
+						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+							<label>Estou ciente de que devo atualizar o título e solicitar a aprovação do meu gestor.<span class="text-danger"> <strong>*</strong></span></label>
+							  <div class="radio-options">
+							   <div class="radio">
+								  <label>
+								  <input type="radio" name="ciente" id= "ciente" value="sim" required="required">Sim, estou ciente.</label>
+							   </div>
+							   <div class="radio">
+								  <label>
+								  <input type="radio" name="ciente" id="ciente" value="nao" required="required">Não, tenho dúvidas.</label>
+							   </div>
+							  </div>
+						 </div>
+					</div>
+					<div class="row">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                           <label>Localização<span class="text-danger"> <strong>*</strong></span></label>
+                             <div class="radio-options">
+                              <div class="radio">
+                                 <label>
+                                 <input type="radio" name="rbLocaliz" id= "rbLocaliz" value="br" required="required">FDM Brasil</label>
+                              </div>
+                              <div class="radio">
+                                 <label>
+                                 <input type="radio" name="rbLocaliz" id="rbLocaliz" value="usa" required="required">FDM USA</label>
+                              </div>
+                             </div>
+                        </div>
+                        </div>
+
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label>Tipo</label><i class="fluigicon fluigicon-transfer icon-sm" aria-hidden="true"></i>
+
+							<br>
+							<div class="radio-inline">
+								<label> 
+									<input name="tipo" id="tipo" value="comex" type="radio" onchange="showTipo(this);">
+									<span class="">Comex</span>
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label> 
+									<input name="tipo" id="tipo" value="outros" type="radio" onchange="showTipo(this);">
+									<span class="">Outros</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="ramal" class="control-label">Ramal</label><i class="flaticon flaticon-phone icon-sm" aria-hidden="true"></i>
+
+							<input type="text" class="form-control input-sm ativ0" name="ramal" id="ramal">
+						</div>
+						</div>
+		
+						<div class="form-group row">
+							<div class="col-md-5">
+	
+								<label for="estabelecimento">Estabelecimento</label><i class="flaticon flaticon-store-mall-directory icon-sm" aria-hidden="true"></i>
+
+ 
+								<div class="input-group">
+									<div class="form-group" id="dvHasError_estabelecimento">
+										<input name="estabelecimento" id="estabelecimento" type="text" class="form-control input-sm" readonly>
+									</div>	
+									<span id="btnestabelecimento" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="estabelecimento">
+										<span class="fluigicon fluigicon-zoom-in "></span>
+									</span>
+								</div>	
+							</div>
+						</div>
+
+                    <div class="form-group row">
+						<div class="col-md-5">
+
+							<label for="fornecedor">Fornecedor</label> <i class="flaticon flaticon-earth icon-sm" aria-hidden="true"></i>
+                        	<div class="input-group">
+                        		<div class="form-group" id="dvHasError_fornecedor">
+									<input name="fornecedor" id="fornecedor" type="text" class="form-control input-sm" readonly>
+									<input name="hfornecedor" id="hfornecedor" type="hidden">
+								</div>	
+								<span id="btncad_fornecedor" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="fornecedor">
+									<span class="fluigicon fluigicon-zoom-in "></span>
+								</span>
+							</div>	
+						</div>
+                    </div>
+
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="vencimento" class="control-label">Vencimento</label><i class="flaticon flaticon-date-range icon-sm" aria-hidden="true"></i>
+							<input type="text" class="form-control input-sm date ativ0" name="vencimento" id="vencimento">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-2">						
+	
+							<div class="form-field" data-type="combo" data-show-properties="" data-field-name="moeda"
+								id="moeda" style="max-width: 200px">
+								<label>Moeda</label><i class="fluigicon fluigicon-money-circle icon-sm" aria-hidden="true"></i>
+								<select class="form-control input-sm ativ0" name="moeda" id="moeda" required="required">
+									<option value=""></option>
+									<option value="REAL">REAL</option>
+									<option value="EURO">EURO</option>
+									<option value="DOLAR">DOLAR</option>
+									<option value="USDCOMPR">USDCOMPR</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<label for="valor" class="control-label">Valor</label><i class="flaticon flaticon-cash icon-sm" aria-hidden="true"></i>
+							<input type="number" class="form-control input-sm money ativ0" name="valor" id="valor">
+						</div>
+					</div>
+
+                    <div class="form-group row">
+						
+						<div class="col-md-5">
+							<label for="centro_custo">Centro de Custo</label> <i class="flaticon flaticon-database icon-sm" aria-hidden="true"></i>
+                        	<div class="input-group">
+                        		<div class="form-group" id="dvHasError_centro_custo">
+									<input name="centro_custo" id="centro_custo" type="text" class="form-control input-sm" readonly>
+								</div>	
+								<span id="btncad_centro_custo" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="centro_custo">
+									<span class="fluigicon fluigicon-zoom-in "></span>
+								</span>
+							</div>	
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-5">
+							<div class="dvFormaPgto" id="dvFormaPgto" hidden>
+
+							<label for="formaPgto">Forma de Pagamento</label> <i class="fluigicon fluigicon-money icon-sm" aria-hidden="true"></i>
+                        	<select class="form-control input-sm ativ0" name="formaPgto" id="formaPgto" required="required">
+								<option value=""></option>
+								<option value="encontro">Encontro de Contas</option>
+								<option value="cambio">Câmbio</option>
+							</select>
+						</div>
+                    </div>
+					</div>
+
+					<div class="form-group row">
+					<div class="col-md-5">
+						<label for="tpFluxo">Tipo de Fluxo Financeiro</label><i class="flaticon flaticon-cash-transfer icon-sm" aria-hidden="true"></i> 
+						<div class="input-group">
+							<div class="form-group" id="dvHasError_tpFluxo">
+								<input name="tpFluxo" id="tpFluxo" type="text" class="form-control input-sm" readonly>
+							</div>	
+							<span id="btntpFluxo" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="tpFluxo">
+								<span class="fluigicon fluigicon-zoom-in "></span>
+							</span>
+						</div>	
+					</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-5">
+							<label for="cta_ctbl">Conta Contábil</label> <i class="flaticon flaticon-monetization-on icon-sm" aria-hidden="true"></i>
+							<div class="input-group">
+								<div class="form-group" id="dvHasError_cta_ctbl">
+									<input name="cta_ctbl" id="cta_ctbl" type="text" class="form-control input-sm" readonly>
+								</div>	
+								<span id="btncta_ctbl" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="cta_ctbl">
+									<span class="fluigicon fluigicon-zoom-in "></span>
+								</span>
+							</div>	
+						</div>
+						</div>
+
+					<div class="form-group row">
+						<div class="col-md-12">
+							<label for="descricao" class="control-label">Descrição</label><i class="fluigicon fluigicon-pen icon-sm" aria-hidden="true"></i>
+
+							<textarea class="form-control ativ0" rows="4" name="descricao" id="descricao"
+								required="required" value=""></textarea>
+						</div>
+						</div>
+						<br>
+
+						<div id="dvFiscal">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="flaticon flaticon-multiple-register"></span>Análise Fiscal</h3>	
+								</div>
+								<div class="panel-body">
+									<div class="row form-group">
+										<div class="col-md-3">
+											<label for="cod_referencia">Código de Referência</label><i class="flaticon flaticon-info icon-sm" aria-hidden="true"></i>
+											<input type="text" class="form-control input-sm" name="cod_referencia" id="cod_referencia">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<br>
+
+						<div id="divFinanceiro">
+							<div class="panel panel-default">
+		
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="flaticon flaticon-monetization-on"></span>Pagamento
+									</h3>
+		
+									<div class="panel-body">
+										<div class="row form-group">
+											<p>
+												<input type="button" class="btnanexo btn btn-primary btn-lg"
+													value="Anexar Comprovante de Pagamento"
+													onclick="showCamera('Comprovante');" />
+											</p>
+										</div>
+		
+									</div>
+								</div>
+		
+							</div>
+						</div>
+					</div>
+					<div id="erro" hidden>
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								<h1 style="text-align:center;">
+									<i class="flaticon flaticon-blocked icon-xs" 
+									aria-hidden="true"></i>
+									⚠️ Processo Bloqueado ⚠️</h1>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<h2 style="text-align:center;">Bloqueio de novas solicitações até as 12 horas do último dia
+										útil do mês, devido a fechamento Fiscal/Tributário</h2>
+								</div>
+							</div>
+						</div>
+					</div> 
+
+					</div>
+				</div>
+	</form>
+</body>
+</html>

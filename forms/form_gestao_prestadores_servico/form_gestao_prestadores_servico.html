@@ -1,0 +1,909 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.mask.min.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+</head>
+<body>
+<div class="fluig-style-guide container-fluid">
+	<form name="form_solic_sesmt" id="form_solic_sesmt" role="form">		
+
+		<input type="hidden" name="maiorque30" id="maiorque30">
+		<input name="aprov_nr" id="aprov_nr" type="hidden"> 
+
+		<div class="page-header">
+			<img src="logo.jpg" class="fluig-style-guide img-responsive thumb-profile pull-left">				
+			<br>		
+			<h3 class="text-center"><strong>GESTÃO DE PRESTADORES DE SERVIÇO</strong></h3>
+		</div>
+
+		<br>
+
+
+		<div class="well" style="background-color: #ffffff;">	
+			
+			<div class="panel panel-info" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="fluigicon fluigicon-file-user icon-md" aria-hidden="true"></i>
+						<b>Dados do(a) Solicitante</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+					<div class="col-md-3">
+						<label for="numDocumento" class="control-label">N° Documento</label>
+						<input type="text" class="form-control input-sm" name="numDocumento" id="numDocumento" readonly placeholder="A ser gerado">
+					</div>
+						<div class="col-md-3">
+							<label for="cad_user_br">Solicitante</label> 
+							<input type="text" class="form-control input-sm" name="cad_user_br" id="cad_user_br" readonly>
+							<input type="hidden" class="form-control input-sm" name="emailRequester" id="emailRequester" readonly>
+						</div>
+						
+						<div class="col-md-4">
+							<label for="cad_nom_user_br">Nome Completo</label> 
+							<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+						</div>
+						
+						<div class="col-md-2">
+							<label for="cad_dt_trans_br">Data Solicitação</label> 
+							<input type="text" class="form-control input-sm" name="cad_dt_trans_br" id="cad_dt_trans_br" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			
+				
+			<div class="panel panel-info" id="dvDadosCadastrais">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="fluigicon fluigicon-file icon-md" aria-hidden="true"></i>
+						<b>Dados da Solicitação</b>
+					</h3>
+				</div>
+
+				<div class="panel-body">
+
+					<div id="divAvisoUser" class="paragraph-is-required system-message-information alert alert-info" role="alert">
+						<strong>ATENÇÃO!</strong> Caso a atividade tenha sido recusada por: <strong>Segurança, RH, Medicina ou Portaria</strong>, você deve direcionar o retorno para "SESMT/RH". Caso tenha sido recusado pelo controle de qualidade, você deve direcionar o retorno para "CQ - LC ou CT".
+					</div>
+				
+			
+			<div class="row form-group">
+				<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3 form-group">
+					<label for="dtInicioAtividade" class="control-label">Data Prevista Inicio da Atividade <i class="flaticon flaticon-date-range icon-md" aria-hidden="true"></i>
+					</label><span class="required text-danger"><strong>*</strong></span>
+					<input type="text" class="form-control input-sm date" name="dtInicioAtividade" id="dtInicioAtividade" >
+				</div>
+				   <div class="col-xs-7 col-sm-4 col-md-4 col-lg-3 form-group">
+					<label for="dtFimAtividade" class="control-label">Data Prevista Fim da Atividade <i class="flaticon flaticon-date-range icon-md" aria-hidden="true"></i>
+					</label><span class="required text-danger"><strong>*</strong></span>
+					<input type="text" class="form-control input-sm date" name="dtFimAtividade" id="dtFimAtividade">
+				</div>
+			</div>
+			<div class="row form-group">			
+				<div class="col-xs-9 col-sm-5 col-md-5 col-lg-4">
+					<label for="rbPortaria" class="control-label">Portaria <i class="fluigicon fluigicon-home icon-sm" aria-hidden="true"></i>
+						<span class="text-danger"> <strong>*</strong></span></label>
+                  <div class="radio-options">
+                     <div class="radio">
+                        <label>
+                        <input type="radio" name="rbPortaria" id="rbPortaria" value="contagem" required="required" onchange="showTipo(this)">Contagem</label>
+                     </div>
+                     <div class="radio">
+                        <label>
+                        <input type="radio" name="rbPortaria" id="rbPortaria" value="laticinios" required="required" onchange="showTipo(this)">Laticinios
+                    	</label>
+					</div>										
+				  </div>
+				</div>
+			</div>
+
+			<div class="row form-group">
+				<div class="col-xs-9 col-sm-5 col-md-5 col-lg-4">
+					<label for="rbisAso" class="control-label">Aso <i class="flaticon flaticon-document-block icon-md" aria-hidden="true"></i>
+						<span class="text-danger"> <strong>*</strong></span></label>
+					<div class="radio-options"> 
+						<div class="radio">
+							<label>
+								<input type="radio" name="rbisAso" id="rbisAso" value="sim" required="required" onchange="showTipo(this)">Sim</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="rbisAso" id="rbisAso" value="nao" required="required" onchange="showTipo(this)">Não
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="divNumIntegracao" hidden>
+				<div class="row form-group">
+					<div class="col-xs-5 col-sm-3 col-md-3 col-lg-2">
+						<label for="numIntegracao" class="control-label">Número da Solicitação de Integração</label><span class="required text-danger"><strong>*</strong></span>
+						<input type="number" class="form-control input-sm" id="numIntegracao" name="numIntegracao">
+					</div>
+				</div>
+			</div>
+			<div id="divAvisoNumIntegracao" class="paragraph-is-required system-message-information alert alert-info" role="alert">
+				<strong>ATENÇÃO!</strong> Para garantir uma análise de riscos mais eficaz pelo Controle de Qualidade, descreva <strong>detalhadamente</strong>:
+				<ul>
+					<li>Atividade a ser realizada;</li>
+					<li>Local da execução;</li>
+					<li>Ferramentas e equipamentos utilizados (se houver).</li>
+				</ul>
+				A descrição completa é imprescindível para a avaliação adequada. Em caso de descrições incompletas, a análise será recusada.
+			</div>
+			
+			<div id="divDadosSolic">
+				<div class="row form-group">
+               		<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3">
+          				<label for="Cnpj" class="control-label">CNPJ <i class="fluigicon fluigicon-file icon-md" aria-hidden="true"></i>
+						  </label>
+						  <span class="required text-danger"><strong>*</strong></span>
+     	               	<input type="text" class="form-control input-sm" id="Cnpj" name="Cnpj" mask="00.000.000/0000-00" onblur="consultaCNPJ()">
+               		</div>
+					   <div class="col-xs-7 col-sm-4 col-md-4 col-lg-3">
+						<label for="Empresa" class="control-label">Empresa <i class="flaticon flaticon-local-city icon-md" aria-hidden="true"></i>
+						</label><span class="required text-danger"><strong>*</strong></span>
+						 <input type="text" class="form-control input-sm" id="Empresa" name="Empresa" readonly>
+				 </div>
+				 <div class="col-xs-7 col-sm-4 col-md-4 col-lg-3">
+					<label for="AtividadeEmpresa" class="control-label">
+						Atividade Principal da Empresa <i class="flaticon flaticon-star-circle icon-md" aria-hidden="true"></i>
+					</label><span class="required text-danger"><strong>*</strong></span>
+					<textarea class="form-control input-sm" id="AtividadeEmpresa" name="AtividadeEmpresa" rows="3" readonly></textarea>
+				</div>
+				
+
+           		</div>
+           		<div class="row form-group">
+           			<div class="col-xs-10 col-sm-6 col-md-6 col-lg-4">
+	           			<label for="DescAtividade" class="control-label">Descrição da Atividade <i class="flaticon flaticon-system-tools icon-md" aria-hidden="true"></i>
+						   </label><span class="required text-danger"><strong>*</strong></span>
+	           			<textarea class="form-control" rows="3" name="DescAtividade" id="DescAtividade" required="required" value=""></textarea>
+           			</div>
+					   <div class="col-xs-10 col-sm-6 col-md-6 col-lg-4">
+						<label for="DescFerramentas" class="control-label">Descreva as ferramentas utilizadas <i class="flaticon flaticon-build icon-md" aria-hidden="true"></i>
+						</label>
+						<textarea class="form-control" rows="3" name="DescFerramentas" id="DescFerramentas" required="required" value=""></textarea>
+					</div>
+       			</div>
+	           			
+           			
+       			</div>
+
+
+       			<div class="row form-group">
+
+					<div class="col-xs-10 col-sm-6 col-md-6 col-lg-4">
+						<label for="cbUnidade" class="control-label">Unidade</label><span class="required text-danger"><strong>*</strong></span>
+						<div class="input-group">
+							<input type="text" class="form-control input-sm" name="cbUnidade" id="cbUnidade" readonly>
+							<span id="btncbUnidade" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="cbUnidade">
+								<span class="fluigicon fluigicon-zoom-in "></span>
+							</span>
+						</div>
+					</div>
+	                     	 	       	
+	           		<div class="col-xs-10 col-sm-6 col-md-6 col-lg-4">	
+	           			<label for="LocalAtividade" class="control-label">Local de Execução da Atividade <i class="fluigicon fluigicon-map-marker icon-sm" aria-hidden="true"></i>
+						   </label><span class="required text-danger"><strong>*</strong></span>
+	           			<textarea class="form-control" rows="3" id="LocalAtividade" name="LocalAtividade" required="required" value=""></textarea>
+	           			
+           			</div>
+
+           			
+       			</div>
+			</div>
+			</div>
+
+       			<div class="panel panel-info" id="divPanelTerceiros">
+
+		            <div class="panel-heading">
+		                <h3 class="panel-title"><span class="fluigicon fluigicon-addusers icon-md"></span> Relação de Terceiros</h3>
+		            </div>
+		    
+			
+		            <div class="panel-body" id="divtbTerceiros">
+
+		                <div class="row">
+		                    <div class="col-md-12">
+		                        <div class="table-responsive">
+		                            <table tablename="tbTerceiros" class="table table-hover table-condensed" id="tbTerceiros" noaddbutton="true" nodeletebutton="true">
+		                                <thead>
+		                                    <tr class="active">
+		                                        <th class="text-center" style="min-width: 300px">Nome do Funcionário</th>
+		                                        <th class="text-center" style="min-width: 160px">Identidade</th>
+		                                        <th class="text-center" style="min-width: 160px">CPF <i class="flaticon flaticon-doc icon-md" aria-hidden="true"></i>
+												</th>
+		                                        <th class="text-center" style="min-width: 160px">Cargo</th>
+		                                        <th class="text-center" style="min-width: 350px">Email</th>
+		                                        <th class="text-center" style="max-width: 90px">NR35 (Trabalho em Altura)</th>
+		                                        <th class="text-center" style="max-width: 90px">NR33 (Espaço Confinado)</th>
+		                                        <th class="text-center" style="max-width: 90px">NR18 (Operação de Plataforma)</th>
+		                                        <th class="text-center" style="max-width: 90px">NR11 (Operação de Muck)</th>
+		                                        <th class="text-center" style="max-width: 90px">NR10 Eletricidade (Básico)</th>
+							                    <th class="text-center" style="max-width: 90px">NR10 SEP(Subestação)</th>
+		                                        <th class=""></th>
+		                                    </tr>
+		                                </thead>
+		                                <tbody>
+		                                    <tr>
+		                                        <td>
+
+		                                            <input type="text" class="form-control" name="NomeTb" id="NomeTb">
+
+		                                        </td>
+		                                        <td>
+
+		                                            <input type="text" class="form-control" name="IdTb" id="IdTb">
+
+		                                        </td>
+		                                        <td>
+
+		                                            <input type="text" class="form-control input-sm" mask="000.000.000-00" name="CpfTb" id="CpfTb">
+
+		                                        </td>
+		                                        <td>
+
+		                                            <input type="text" class="form-control" name="CargoTb" id="CargoTb">
+
+		                                        </td>
+
+		                                        <td>
+
+		                                        		<input type="text" class="form-control" name="EmailTb" id="EmailTb">
+												</td>
+		                                        		
+	                                        	<td>
+
+	                                        		<input type="checkbox" class="form-control" name="NR35Tb" id="NR35Tb">
+
+                                        		</td>
+
+												<td>
+
+	                                        		<input type="checkbox" class="form-control" name="NR33Tb" id="NR33Tb">
+
+                                        		</td>
+
+	                                        	<td>
+
+	                                        		<input type="checkbox" class="form-control" name="NR18Tb" id="NR18Tb">
+
+                                        		</td>
+                                        		<td>
+
+	                                        		<input type="checkbox" class="form-control" name="NR11Tb" id="NR11Tb">
+
+                                        		</td>
+		                                       	<td>
+
+	                                        		<input type="checkbox" class="form-control" name="NR10BTb" id="NR10BTb">
+
+                                        		</td>
+		                                        <td>
+
+	                                        		<input type="checkbox" class="form-control" name="NR10SEPTb" id="NR10SEPTb">
+
+                                        		</td>
+		                                        <td>
+		                                            <button onclick="delTableRow(this);" class="btn btn-sm btn-default" name="btnDeletaTerceiro" id="btnDeletaTerceiro" type="button"><span class="fluigicon fluigicon-trash"></span> Deletar
+	                                            	</button>
+		                                        </td>
+
+		                                    </tr>
+		                                </tbody>
+		                                <tfoot>
+		                                    <tr>
+		                                        <td class="pull-left">
+		                                            <button onclick="addTableRow('tbTerceiros');" class="btn btn-sm btn-default" name="btnAdicionaTerceiro" id="btnAdicionaTerceiro" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar Terceiro
+		                                            </button>
+		                                        </td>
+		                                    </tr>
+		                                </tfoot>
+		                            </table>
+		                        </div>
+		                        <!--table responsive-->
+		                    </div>
+		                    <!-- col -->
+		                </div>
+		                <!-- row -->
+		            </div>
+		            <!-- panel body -->
+		        </div>
+
+				<div class="panel panel-info" id="divAnexo">
+					<div class="panel-heading ">
+						<h3 class="panel-title">
+							<i class="fluigicon fluigicon-paperclip icon-md" aria-hidden="true"></i>
+							<b> Anexar documentos</b>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div id="divAvisoIntegracao" class="paragraph-is-required system-message-information alert alert-info" role="alert"><strong>ATENÇÃO! </strong> Favor anexar os seguintes documentos: ASO- Atestado de Saúde Ocupacional ; ficha de registro ou cópia da carteira de trabalho (caso algum dos relacionados seja sócio favor anexar o contrato social); para todos os trabalhos especiais, como por exemplo: trabalho em altura, eletricista, entre outros, favor anexar as certificações das NRs. É obrigatório relacionar todos os documentos.</div>
+
+		            	<div id="divAvisoPermissao" class="paragraph-is-required system-message-information alert alert-danger" role="alert" hidden><strong>ATENÇÃO!</strong> Favor informar o nome do funcionário que estará envolvido na atividade, para inclusão na PT – Permissão de Trabalho.</div>
+	
+						<div class="row form-group">
+							<div class="col-12 text-center">
+								<input type="button" class="btnanexo btn btn-info btn-lg"
+									value="Anexar documentos" 
+									onclick="showCamera('Documentos');" />
+	
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="panel panel-info" id="dvFase8">
+					<div class="panel-heading ">
+						<h3 class="panel-title">
+							<i class="flaticon flaticon-class-check icon-md"></i><b> Segurança do Trabalho - Liberar Trabalho</b>
+						</h3>
+					</div>
+					<div class="panel-body">
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								   <label for="aprovador_fase8">Responsável</label> 
+								   <input type="text" class="form-control" name="aprovador_fase8" id="aprovador_fase8" readonly>
+								   <input type="hidden" name="haprovador_fase8_login" id="haprovador_fase8_login">
+								   <input type="hidden" name="haprovador_fase8_mail" id="haprovador_fase8_mail">
+							</div>
+								
+							<div class="col-md-2"> 
+								<label for="dt_aprovador_fase8">Data Movimento</label> 
+								<input type="text" class="form-control" name="dt_aprovador_fase8" id="dt_aprovador_fase8" readonly>
+							</div>
+						</div>
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								<div class="form-group" id="dvHasError_aprov_fase8"> 
+									<label>Trabalho liberado?</label>
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_fase8" id="aprov_fase8" value="true" type="radio"> 
+											<span class="">Sim</span> 
+										</label>
+									</div>
+									
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_fase8" id="aprov_fase8" value="false" type="radio"> 
+											<span class="">Não</span> 
+										</label>
+									</div>
+								</div>        
+							</div>
+							<div class="col-md-8"> 
+								<div class="form-group" id="dvHasError_just_fase8">
+									<label for="just_fase8">Observação</label> 
+									<textarea class="form-control" name="just_fase8" id="just_fase8" rows="5"></textarea>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-info" id="dvFase4">
+					<div class="panel-heading ">
+						<h3 class="panel-title">
+							<i class="flaticon flaticon-class-check icon-md"></i><b> CQ - AVALIAR RISCO</b>
+						</h3>
+					</div>
+					<div class="panel-body">
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								   <label for="aprovador_fase4">Aprovador</label> 
+								   <input type="text" class="form-control" name="aprovador_fase4" id="aprovador_fase4" readonly>
+								   <input type="hidden" name="haprovador_fase4_login" id="haprovador_fase4_login">
+								   <input type="hidden" name="haprovador_fase4_mail" id="haprovador_fase4_mail">
+							</div>
+								
+							<div class="col-md-2"> 
+								<label for="dt_aprovador_fase4">Data Movimento</label> 
+								<input type="text" class="form-control" name="dt_aprovador_fase4" id="dt_aprovador_fase4" readonly>
+							</div>
+						</div>
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								<div class="form-group" id="dvHasError_aprov_fase4"> 
+									<label>Existe Risco?</label>
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_fase4" id="aprov_fase4" value="true" type="radio" onchange="validaRisco(this);"> 
+											<span class="">Sim</span> 
+										</label>
+									</div>
+									
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_fase4" id="aprov_fase4" value="false" type="radio" onchange="validaRisco(this);"> 
+											<span class="">Não</span> 
+										</label>
+									</div>
+								</div>        
+							</div>
+							
+							<div class="col-md-8"> 
+								<div class="form-group" id="dvHasError_just_fase4">
+									<label for="just_fase4">Riscos existentes</label> 
+									<textarea class="form-control" name="just_fase4" id="just_fase4" rows="5"></textarea>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-info" id="dvFase5">
+					<div class="panel-heading ">
+						<h3 class="panel-title">
+							<i class="fluigicon fluigicon-paperclip icon-md"></i><b> Anexar doc assinado</b>
+						</h3>
+					</div>
+					<div class="panel-body">
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								   <label for="aprovador_fase5">Responsável</label> 
+								   <input type="text" class="form-control" name="aprovador_fase5" id="aprovador_fase5" readonly>
+								   <input type="hidden" name="haprovador_fase5_login" id="haprovador_fase5_login">
+								   <input type="hidden" name="haprovador_fase5_mail" id="haprovador_fase5_mail">
+							</div>
+								
+							<div class="col-md-2"> 
+								<label for="dt_aprovador_fase5">Data Movimento</label> 
+								<input type="text" class="form-control" name="dt_aprovador_fase5" id="dt_aprovador_fase5" readonly>
+							</div>
+						</div>
+					
+						<div class="form-group row">
+							<div class="col-md-8"> 
+								<div class="form-group" id="dvHasError_just_fase5">
+									<label for="just_fase5">Observação</label> 
+									<textarea class="form-control" name="just_fase5" id="just_fase5" rows="5"></textarea>
+								</div>	
+							</div>
+						</div>
+	
+						<div class="row form-group">
+							<div class="col-12 text-center">
+								<input type="button" class="btnanexo btn btn-info btn-lg"
+									value="Anexar documento assinado"
+									onclick="showCamera('Documento');" />
+	
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="panel panel-info" id="dvFase6">
+					<div class="panel-heading ">
+						<h3 class="panel-title">
+							<i class="flaticon flaticon-class-check icon-md"></i><b> CQ - Validar DOC</b>
+						</h3>
+					</div>
+					<div class="panel-body">
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								   <label for="aprovador_fase6">Aprovador</label> 
+								   <input type="text" class="form-control" name="aprovador_fase6" id="aprovador_fase6" readonly>
+								   <input type="hidden" name="haprovador_fase6_login" id="haprovador_fase6_login">
+								   <input type="hidden" name="haprovador_fase6_mail" id="haprovador_fase6_mail">
+							</div>
+								
+							<div class="col-md-2"> 
+								<label for="dt_aprovador_fase6">Data Movimento</label> 
+								<input type="text" class="form-control" name="dt_aprovador_fase6" id="dt_aprovador_fase6" readonly>
+							</div>
+						</div>
+					
+						<div class="form-group row">
+							<div class="col-md-3">
+								<div class="form-group" id="dvHasError_aprov_fase6"> 
+									<label>Aprovar Documentos?</label>
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_fase6" id="aprov_fase6" value="true" type="radio"> 
+											<span class="">Sim</span> 
+										</label>
+									</div>
+									
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_fase6" id="aprov_fase6" value="false" type="radio"> 
+											<span class="">Não</span> 
+										</label>
+									</div>
+								</div>        
+							</div>
+							
+							<div class="col-md-8"> 
+								<div class="form-group" id="dvHasError_just_fase6">
+									<label for="just_fase6">Justificativa</label> 
+									<textarea class="form-control" name="just_fase6" id="just_fase6" rows="5"></textarea>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<div class="panel panel-info" id="dvFase1">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">
+                    	<i class="flaticon flaticon-class-check icon-md"></i><b> DP - Aprovar Documentos </b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                
+					<div class="form-group row">
+		                <div class="col-md-3">
+	                       	<label for="aprovador_fase1">Aprovador</label> 
+	                       	<input type="text" class="form-control" name="aprovador_fase1" id="aprovador_fase1" readonly>
+	                       	<input type="hidden" name="haprovador_fase1_login" id="haprovador_fase1_login">
+	                       	<input type="hidden" name="haprovador_fase1_mail" id="haprovador_fase1_mail">
+						</div>
+	                        
+						<div class="col-md-2"> 
+							<label for="dt_aprovador_fase1">Data Movimento</label> 
+	                        <input type="text" class="form-control" name="dt_aprovador_fase1" id="dt_aprovador_fase1" readonly>
+						</div>
+					</div>
+                
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                        	<div class="form-group" id="dvHasError_aprov_fase1"> 
+	                        	<label>Aprovar Documentos?</label>
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase1" id="aprov_fase1" value="true" type="radio"> 
+	                            		<span class="">Sim</span> 
+	                            	</label>
+	                            </div>
+	                            
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase1" id="aprov_fase1" value="false" type="radio"> 
+	                            		<span class="">Não</span> 
+	                            	</label>
+	                            </div>
+	                    	</div>        
+                        </div>
+                        
+                        <div class="col-md-8"> 
+                        	<div class="form-group" id="dvHasError_just_fase1">
+	                        	<label for="just_fase1">Justificativa</label> 
+	                        	<textarea class="form-control" name="just_fase1" id="just_fase1" rows="5"></textarea>
+	                        </div>	
+                        </div>
+
+						<!--
+						<div class="form-group row" id="dvNR">
+							<div class="col-md-3">
+								<div class="form-group" id="dvHasError_nr"> 
+									<label>Emissão NR?</label>
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_nr" id="aprov_nr" value="true" type="radio"> 
+											<span class="">Sim</span> 
+										</label>
+									</div>
+									
+									<div class="radio"> 
+										<label> 
+											<input name="aprov_nr" id="aprov_nr" value="false" type="radio"> 
+											<span class="">Não</span> 
+										</label>
+									</div>
+								</div>        
+							</div>
+						</div>
+						-->
+
+                    </div>
+                </div>
+            </div>
+
+			<div class="panel panel-info" id="dvFase7">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">
+                    	<i class="flaticon flaticon-class-check icon-md"></i><b> Portaria - Liberar início de trabalho</b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                
+					<div class="form-group row">
+		                <div class="col-md-3">
+	                       	<label for="aprovador_fase7">Aprovador</label> 
+	                       	<input type="text" class="form-control" name="aprovador_fase7" id="aprovador_fase7" readonly>
+	                       	<input type="hidden" name="haprovador_fase7_login" id="haprovador_fase7_login">
+	                       	<input type="hidden" name="haprovador_fase7_mail" id="haprovador_fase7_mail">
+						</div>
+	                        
+						<div class="col-md-2"> 
+							<label for="dt_aprovador_fase7">Data Movimento</label> 
+	                        <input type="text" class="form-control" name="dt_aprovador_fase7" id="dt_aprovador_fase7" readonly>
+						</div>
+					</div>
+                
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                        	<div class="form-group" id="dvHasError_aprov_fase7"> 
+	                        	<label>Libera Portaria?</label>
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase7" id="aprov_fase7" value="true" type="radio"> 
+	                            		<span class="">Sim</span> 
+	                            	</label>
+	                            </div>
+	                            
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase7" id="aprov_fase7" value="false" type="radio"> 
+	                            		<span class="">Não</span> 
+	                            	</label>
+	                            </div>
+	                    	</div>        
+                        </div>
+                        
+                        <div class="col-md-8"> 
+                        	<div class="form-group" id="dvHasError_just_fase7">
+	                        	<label for="just_fase7">Justificativa</label> 
+	                        	<textarea class="form-control" name="just_fase7" id="just_fase7" rows="5"></textarea>
+	                        </div>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="panel panel-info" id="dvFase2">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">
+                    	<i class="flaticon flaticon-class-check icon-md"></i><b> RH-Treinamentos - Aprovar capacitações </b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                
+					<div class="form-group row">
+		                <div class="col-md-3">
+	                       	<label for="aprovador_fase2">Aprovador</label> 
+	                       	<input type="text" class="form-control" name="aprovador_fase2" id="aprovador_fase2" readonly>
+	                       	<input type="hidden" name="haprovador_fase2_login" id="haprovador_fase2_login">
+	                       	<input type="hidden" name="haprovador_fase2_mail" id="haprovador_fase2_mail">
+						</div>
+	                        
+						<div class="col-md-2"> 
+							<label for="dt_aprovador_fase2">Data Movimento</label> 
+	                        <input type="text" class="form-control" name="dt_aprovador_fase2" id="dt_aprovador_fase2" readonly>
+						</div>
+					</div>
+                
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                        	<div class="form-group" id="dvHasError_aprov_fase2"> 
+	                        	<label>Confirma Capacitações?</label>
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase2" id="aprov_fase2" value="true" type="radio"> 
+	                            		<span class="">Sim</span> 
+	                            	</label>
+	                            </div>
+	                            
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase2" id="aprov_fase2" value="false" type="radio"> 
+	                            		<span class="">Não</span> 
+	                            	</label>
+	                            </div>
+	                    	</div>        
+                        </div>
+                        
+                        <div class="col-md-8"> 
+                        	<div class="form-group" id="dvHasError_just_fase2">
+	                        	<label for="just_fase2">Justificativa</label> 
+	                        	<textarea class="form-control" name="just_fase2" id="just_fase2" rows="5"></textarea>
+	                        </div>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="panel panel-info" id="dvFase3_1">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">
+                    	<i class="flaticon flaticon-class-check icon-md"></i><b> RH - Aprovar Integração</b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-3">
+							   <label for="aprovador_fase3_1">Aprovador</label> 
+							   <input type="text" class="form-control" name="aprovador_fase3_1" id="aprovador_fase3_1" readonly>
+							   <input type="hidden" name="haprovador_fase3_1_login" id="haprovador_fase3_1_login">
+							   <input type="hidden" name="haprovador_fase3_1_mail" id="haprovador_fase3_1_mail">
+						</div>
+							
+						<div class="col-md-2"> 
+							<label for="dt_aprovador_fase3_1">Data Movimento</label> 
+							<input type="text" class="form-control" name="dt_aprovador_fase3_1" id="dt_aprovador_fase3_1" readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<div class="form-group" id="dvHasError_aprov_fase3_1"> 
+								<label>Aprova Integração?</label>
+								<div class="radio"> 
+									<label> 
+										<input name="aprov_fase3_1" id="aprov_fase3_1" value="true" type="radio"> 
+										<span class="">Sim</span> 
+									</label>
+								</div>
+								
+								<div class="radio"> 
+									<label> 
+										<input name="aprov_fase3_1" id="aprov_fase3_1" value="false" type="radio"> 
+										<span class="">Não</span> 
+									</label>
+								</div>
+							</div>        
+						</div>
+						
+						<div class="col-md-8"> 
+							<div class="form-group" id="dvHasError_just_fase3_1">
+								<label for="just_fase3_1">Justificativa</label> 
+								<textarea class="form-control" name="just_fase3_1" id="just_fase3_1" rows="5"></textarea>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>	
+
+			<div class="panel panel-info" id="dvFase3">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">
+                    	<i class="flaticon flaticon-class-check icon-md"></i><b> Medicina - Aprovar ASO/PCMSO</b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                
+					<div class="form-group row">
+		                <div class="col-md-3">
+	                       	<label for="aprovador_fase3">Aprovador</label> 
+	                       	<input type="text" class="form-control" name="aprovador_fase3" id="aprovador_fase3" readonly>
+	                       	<input type="hidden" name="haprovador_fase3_login" id="haprovador_fase3_login">
+	                       	<input type="hidden" name="haprovador_fase3_mail" id="haprovador_fase3_mail">
+						</div>
+	                        
+						<div class="col-md-2"> 
+							<label for="dt_aprovador_fase3">Data Movimento</label> 
+	                        <input type="text" class="form-control" name="dt_aprovador_fase3" id="dt_aprovador_fase3" readonly>
+						</div>
+					</div>
+                
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                        	<div class="form-group" id="dvHasError_aprov_fase3"> 
+	                        	<label>Aprovar ASO/PCMSO?</label>
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase3" id="aprov_fase3" value="true" type="radio"> 
+	                            		<span class="">Sim</span> 
+	                            	</label>
+	                            </div>
+	                            
+	                            <div class="radio"> 
+	                            	<label> 
+	                            		<input name="aprov_fase3" id="aprov_fase3" value="false" type="radio"> 
+	                            		<span class="">Não</span> 
+	                            	</label>
+	                            </div>
+	                    	</div>        
+                        </div>
+                        
+                        <div class="col-md-8"> 
+                        	<div class="form-group" id="dvHasError_just_fase3">
+	                        	<label for="just_fase3">Justificativa</label> 
+	                        	<textarea class="form-control" name="just_fase3" id="just_fase3" rows="5"></textarea>
+	                        </div>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+		       
+			<div class="panel panel-info" id="divIntegracao">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<i class="fluigicon fluigicon-academic-certificate icon-md"></i><b> Integração</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="paragraph-is-required system-message-information alert alert-info" role="alert"><strong>ATENÇÃO! </strong> Solicitar o link da universidade junto ao RH – Treinamentos, após anexar o certificado de integração.</div>
+						<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3">
+							<label for="dtIntegracao" class="control-label">Data da Integração Realizada</label>
+							<input type="text" class="form-control input-sm" name="dtIntegracao" id="dtIntegracao">
+						</div>
+					</div>
+						<div class="row form-group">
+							<div class="col-12 text-center">
+								<input type="button" class="btnanexo btn btn-info btn-lg"
+									value="Anexar certificado de integração"
+									onclick="showCamera('Certificado');" />
+	
+							</div>
+						</div>
+					</div>
+				
+			</div>
+			
+
+
+   			<div id="divPermissaoTrabalho">
+				<div class="row form-group">
+               		<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3 form-group">
+	               		<label for="numPt" class="control-label">Número da Permissão de Trabalho</label><span class="required text-danger"><strong>*</strong></span>
+	               		<input type="text" class="form-control input-sm" name="numPt" id="numPt">
+	               	</div>
+               		<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3 form-group">
+	               		<label for="dtInicio" class="control-label">Data Inicio da Permissão</label><span class="required text-danger"><strong>*</strong></span>
+	               		<input type="text" class="form-control input-sm date" name="dtInicio" id="dtInicio">
+	               	</div>
+
+               		<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3 form-group">
+	               		<label for="dtFim" class="control-label">Data Fim da Permissão</label><span class="required text-danger"><strong>*</strong></span>
+	               		<input type="text" class="form-control input-sm date" name="dtFim" id="dtFim">
+               		</div>
+       			</div>
+   			</div>
+
+
+   			
+   			<div id="divEncerramento">
+   				<div class="row form-group">
+   					<div id="divAvisoEncerramento" class="paragraph-is-required system-message-information alert alert-danger" role="alert"><strong>ATENÇÃO!</strong> Após a conclusão dos serviços favor encerrar a PT – Permissão de Trabalho.</div>
+
+               		<div class="col-xs-7 col-sm-4 col-md-4 col-lg-3">
+	               		<label for="dtEncerramento" class="control-label">Data Encerramento</label><span class="required text-danger"><strong>*</strong></span>
+	               		<input type="text" class="form-control input-sm date" name="dtEncerramento" id="dtEncerramento">
+	               		
+               		</div>
+           		</div>
+       		</div>
+
+   		</div>
+	</form>
+
+	
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+	   
+			     
+
+

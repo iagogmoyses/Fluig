@@ -13,6 +13,19 @@ function displayFields(form,customHTML){
 	customHTML.append("<script>function getModePage(){ return '" + form.getFormMode() + "'; } </script>");
     customHTML.append('<script>document.getElementById("dvAprov").style.display  = "none";</script>');
 
+	if(form.getFormMode() == "VIEW"){
+		if(form.getValue("rb_tipo_solic") == "criacao"){
+			form.setVisibleById("dvCriacao", true);
+	}
+		else if(form.getValue("rb_tipo_solic") == "alteracao"){
+			form.setVisibleById("dvAlteracao", true);
+		}
+		else{
+			form.setVisibleById("dvBloqueio", true);
+}
+	}
+
+
     if (atividade == 0 || atividade == 1) {
 		var fullDate = new Date();
 		var hours = fullDate.getHours();

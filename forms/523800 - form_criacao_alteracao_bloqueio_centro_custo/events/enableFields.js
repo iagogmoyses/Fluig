@@ -16,6 +16,7 @@ function enableFields(form){
 		form.setValue("nomeRequester", colaborador.getValue(0, "colleagueName"));
 		form.setValue("emailRequester", colaborador.getValue(0, "mail"));
 		form.setValue("cad_nom_user_br", colaborador.getValue(0, "colleagueName"));
+        form.setEnabled("codigo", false);
 	}
 
     if(ativ == 5){
@@ -25,7 +26,6 @@ function enableFields(form){
 
     if(ativ != 0 && ativ != 1 && ativ != 14){
         form.setEnabled("rb_tipo_solic", false);
-        form.setEnabled("codigo", false);
         form.setEnabled("titulo", false);
         form.setEnabled("dataInicio", false);
         form.setEnabled("dataValidade", false);

@@ -1,0 +1,181 @@
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js"
+		charset="utf-8"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>	
+	<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+	<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-mask-number@1.0.1/jquery.masknumber.min.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	<style type="text/css">
+	</style>
+	<style type="text/css" media="print">
+		body {
+			zoom: 80%;			
+		}
+	</style>
+</head>
+
+<body>
+	<div class="alert alert-info" role="alert" id="alerta"></div>
+	<div class="fluig-style-guide container-fluid">
+	
+		<form name="formTransferenciaItem" id="formTransferenciaItem" role="form">
+
+			<div class="page-header">
+				<img src="logo.jpg" class="fluig-style-guide img-responsive thumb-profile pull-left">
+				<br>
+				<h3 class="text-center"><strong>Movimentação de Itens</strong></h3>
+			</div>
+
+			<br>
+
+			<input type="hidden" name="nomeCustos" id="nomeCustos">
+			<input type="hidden" name="loginCustos" id="loginCustos">
+			<input type="hidden" name="emailCustos" id="emailCustos">
+
+			<input type="hidden" name="nomeGestor" id="nomeGestor">
+			<input type="hidden" name="loginGestor" id="loginGestor">
+			<input type="hidden" name="emailGestor" id="emailGestor">
+
+			<div class="panel panel-info" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-person icon-md" aria-hidden="true"></i>
+						<b>Dados Cadastrais</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+
+						<div class="col-md-3">
+							<label for="numDocumento" class="control-label">N° Documento</label>
+							<input type="text" class="form-control input-sm" name="numDocumento" id="numDocumento" readonly placeholder="A ser gerado">
+						</div>
+							<div class="col-md-3">
+								<label for="cad_user_br">Solicitante</label> 
+								<input type="text" class="form-control input-sm" name="cad_user_br" id="cad_user_br" readonly>
+								<input type="hidden" class="form-control input-sm" name="emailRequester" id="emailRequester" readonly>
+							</div>
+							
+							<div class="col-md-4">
+								<label for="cad_nom_user_br">Nome Completo</label> 
+								<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+							</div>
+							
+							<div class="col-md-2">
+								<label for="cad_dt_trans_br">Data Solicitação</label> 
+								<input type="text" class="form-control input-sm" name="cad_dt_trans_br" id="cad_dt_trans_br" readonly>
+							</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="aparecer_custos">
+					<div class="row form-group">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 form-group">
+							<label for="conta_contabil" class="control-label">Conta Contábil</label>
+							<input type="text" class="form-control input-sm" name="conta_contabil" id="conta_contabil">
+						</div>
+					</div>
+				</div>
+
+				<div id="solicitante">
+
+					<div class="panel panel-info">
+						<div class="panel-heading ">
+							<h3 class="panel-title"><i class="flaticon flaticon-news icon-md" aria-hidden="true"></i>
+								<b>Dados da Solicitação</b>
+							</h3>
+						</div>
+						<div class="panel-body" style="padding: 15px;">
+			
+			<div class="row form-group">
+		        
+					
+							<div class="table-responsive">
+								<table tablename="tbTransacoesDiversas" class="table table-striped" id="tbTransacoesDiversas" noaddbutton="true" nodeletebutton="false">
+									<thead>
+										<tr>
+											<th class="" style="min-width: 400px">Item Movimentado</th>
+											<th class="" style="min-width: 50px">Entrada/Saida</th>
+											<th class="" style="min-width: 100px">Estabelecimento </th>
+											<th class="" style="min-width: 200px">Localização</th>
+											<th class="" style="min-width: 100px">Depósito</th>
+											<th class="" style="min-width: 200px">Lote do Item</th>
+											<th class="" style="min-width: 200px">Data de Validade</th>
+											<th class="" style="min-width: 120px">Centro de Custo</th>
+											<th class="" style="min-width: 50px">Quantidade</th>
+											<th class="" style="min-width: 120px">Valor/Material </th>
+										</tr>
+									</thead>						
+									<tbody>
+										<tr>	
+											
+											<td>	
+												<input type="hidden" id="idtbTransacoesDiversas" name="idtbTransacoesDiversas">		
+												<div class="input-group">	
+													<div class="form-group" id="dvHasError_item">
+														<input name="item" id="item" type="text" class="form-control input-sm" readonly>
+														<input name="it_codigo" id="it_codigo" type="hidden" class="form-control input-sm" readonly>
+													</div>	
+													<span id="btnitem" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="item">
+														<span class="fluigicon fluigicon-zoom-in "></span>
+													</span>
+												</div>
+											</td>
+
+											<td>
+												<div class="row">									
+													<input type="radio" name="entrada_saida" value="1" id="entrada">
+													<label for="entrada">Entrada</label>
+											</div>
+											<div class="row">
+													<input type="radio" name="entrada_saida" value="2" id="saida" >
+													<label for="saida">Saída</label>
+											
+											</div>		
+																					
+											</td>
+											<td><input type="text" class="form-control" name="cod_estabel" id="cod_estabel" readonly ></td>
+											<td>
+												<div class="input-group">	
+													<div class="form-group" id="dvHasError_localizacao">
+														<input name="localizacao" id="localizacao" type="text" class="form-control input-sm">
+													</div>	
+													<span id="btnlocalizacao" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="localizacao" readonly>
+														<span class="fluigicon fluigicon-zoom-in "></span>
+													</span>
+												</div>	
+											</td>
+											<td><input type="text" class="form-control" name="deposito" id="deposito" readonly></td>
+											<td><input type="text" class="form-control" name="lote" id="lote" readonly></td>
+											<td><input type="text" class="form-control formato_data" name="dt_validade" id="dt_validade" readonly ></td>
+											<td><input type="text" class="form-control" name="centro_custo" id="centro_custo" ></td>
+											<td><input type="text" class="form-control" name="quantidade" id="quantidade" ></td>
+											<td><input type="text" class="form-control money" name="valor_material" id="valor_material" ></td>
+										</tr>
+									</tbody>
+								</table>
+							<button onclick="addTableRow('tbTransacoesDiversas');" class="btn btn-sm btn-default" id="btAddItem" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar
+							</button>																				
+							</div>								
+						
+							
+											
+			</div>
+						</div>
+					</div>
+				</div>
+
+		</form>
+	</div>
+</body>
+<script language="javascript" type="text/javascript" src="custom.js"></script>
+
+</html>

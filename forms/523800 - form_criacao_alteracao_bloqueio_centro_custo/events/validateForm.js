@@ -7,7 +7,6 @@ function validateForm(form){
 	if(ativ == 0 || ativ == 4 || ativ == 14){
 		validaCampo("Tipo de solicitação", form.getValue("rb_tipo_solic"));
 		if(form.getValue("rb_tipo_solic") == "criacao"){
-            validaCampo("Código", form.getValue("codigo"));
             validaCampo("Título", form.getValue("titulo"));
             validaCampo("Data Início", form.getValue("dataInicio"));
             validaCampo("Data de Validade", form.getValue("dataValidade"));
@@ -35,8 +34,12 @@ function validateForm(form){
 	}
 
 	if(ativ == 5){
+        if(form.getValue("rb_tipo_solic") == "criacao"){
+            validaCampo("Código", form.getValue("codigo"));
+        }
 		validaCampo("Validação", form.getValue("aprov_custos"));
 		validaCampo("Justificativa", form.getValue("just_aprov"));
+        
 	}
 }
 
