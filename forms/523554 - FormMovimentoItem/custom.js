@@ -168,3 +168,89 @@ function fnEnableRSButtonField(nomeObj, stat){
 	else
 	$('#'+nomeObj).removeClass('input-group-addon btn-info').addClass('input-group-addon btn-primary');
 }
+
+function validaSaldo(button){
+	$("#overlay").fadeIn(300);
+
+	var tr = $(button).closest('tr');
+	var index = button.id.substring(button.id.indexOf('___') + 3);
+
+    var it_codigo = tr.find("#it_codigo___" + index).val();
+    var quantidade = tr.find("#quantidade___" + index).val();
+    var deposito = tr.find("#deposito___" + index).val();
+    var lote = tr.find("#lote___" + index).val();
+    var localizacao = tr.find("#localizacao___" + index).val();
+    var qtd = tr.find("#qtd___" + index).val();
+	var entrada_saida = tr.find('input[name="entrada_saida___' + index + '"]:checked').val();
+		
+		var param = {
+			"datasetId": "ems_valida_saldo_transf_item",
+			"filterFields": ["it_codigo", it_codigo, "quantidade", quantidade, "deposito", deposito, "lote", lote, "qtd", qtd, "localizacao", localizacao]
+		};
+
+		console.log(param);
+	
+		$.ajax({
+			type: 'POST',
+			contentType: 'application/json',
+			dataType: 'json',
+			url: '/api/public/ecm/dataset/search',
+			data: JSON.stringify(param), // Enviar os parâmetros 
+			success: function (data) {
+				console.log("data completo:", data);
+
+				if(entrada_saida === "1"){
+					FLUIGC.toast({
+						title: '',
+						message: "Operações de entrada não necessitam disponibilidade de saldo!",
+						type: 'info'
+					});
+				}
+
+
+				else if(it_codigo === "" || quantidade === ""){
+					FLUIGC.toast({
+						title: '',
+						message: "ERRO. Campo 'item' ou 'quantidade' vazio(s). Insira valores válidos.",
+						type: 'danger'
+					});
+				}
+				else if (data.content && data.content.length > 0) {
+					var saldo = data.content[data.content.length-1];
+					console.log("Saldo retornado:", saldo);
+					
+					if (saldo.valida === true) {
+						FLUIGC.toast({
+							title: '',
+							message: "Saldo disponível para o item: " + it_codigo + ". <br>Saldo ainda disponível: " + (saldo.qtidade - quantidade),
+							type: 'info'
+						});
+					} else if(saldo.valida === false) {
+						FLUIGC.toast({
+							title: '',
+							message: "Saldo indisponível para o item: " + it_codigo + ". <br>Saldo atual: " + saldo.qtidade + ".<br>Quantidade solicitada: " + quantidade,
+							type: 'warning'
+						});
+					} 
+				} 
+				else {
+					FLUIGC.toast({
+						title: '',
+						message: "Nenhum registro encontrado para o item: " + it_codigo,
+						type: 'danger'
+					});
+				}
+			},
+			error: function () {
+				FLUIGC.toast({
+					title: '',
+					message: "Erro ao validar saldo" ,
+					type: 'danger'
+				});
+			}
+		}).done(function () {
+			setTimeout(function () {
+				$("#overlay").fadeOut(300);
+			}, 500);
+		});
+	};

@@ -35,7 +35,9 @@ function validateForm(form){
 
 	if(ativ == 5){
         if(form.getValue("rb_tipo_solic") == "criacao"){
+            if(form.getValue("aprov_custos") == "true"){
             validaCampo("Código", form.getValue("codigo"));
+            }
         }
 		validaCampo("Validação", form.getValue("aprov_custos"));
 		validaCampo("Justificativa", form.getValue("just_aprov"));

@@ -1,5 +1,6 @@
 function afterTaskComplete(colleagueId,nextSequenceId,userList){
 	var atividade = getValue("WKNumState");
+	var status = hAPI.getCardValue("statusProcesso");
 	
 	if(atividade == 2 && nextSequenceId == 6 ){
 		try{
@@ -33,6 +34,7 @@ function afterTaskComplete(colleagueId,nextSequenceId,userList){
 	
 	if(atividade == 14 && nextSequenceId == 6){
 		try{
+			if(status == "ERRO") return;
 			
 			var userCustos = getValue("WKUser");
 			var userCustosName = hAPI.getCardValue("nomeCustos");

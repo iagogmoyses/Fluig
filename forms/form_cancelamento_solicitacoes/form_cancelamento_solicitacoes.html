@@ -1,0 +1,161 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.mask.min.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+</head>
+
+<body>
+	<form name="form" role="form" onLoad="form">
+		<div class="fluig-style-guide">
+		
+			<input type="hidden" name="num_atv" id="num_atv"> 
+			<input type="hidden" name="num_process" id="num_process"> 
+			<input type="hidden" name="cad_browser_name" id="cad_browser_name">
+			<input type="hidden" name="cad_browser_version" id="cad_browser_version">
+			
+			<input type="hidden" name="nomeRequester" id="nomeRequester">
+			<input type="hidden" name="loginRequester" id="loginRequester">
+			<input type="hidden" name="emailRequester" id="emailRequester">
+			
+			
+			<div class="page-header">
+				<img src="logo.jpg" class="fluig-style-guide img-responsive thumb-profile pull-left">
+				<br>
+				<h3 class="text-center"><strong>Cancelamento de solicitações</strong></h3>
+			</div>
+
+			<br>
+						
+			<div class="panel panel-info" id="dvPrincipal">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-person icon-md" aria-hidden="true"></i>
+						<b>Dados do(a) Solicitante</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+
+					<div class="col-md-3">
+						<label for="numDocumento" class="control-label">N° Solicitação</label>
+						<input type="text" class="form-control input-sm" name="numDocumento" id="numDocumento" readonly placeholder="A ser gerado">
+					</div>
+
+						<div class="col-md-3">
+							<label for="cad_user_br">Solicitante</label> 
+							<input type="text" class="form-control input-sm" name="cad_user_br" id="cad_user_br" readonly>
+						</div>
+						
+						<div class="col-md-4">
+							<label for="cad_nom_user_br">Nome Completo</label> 
+							<input type="text" class="form-control input-sm" name="cad_nom_user_br" id="cad_nom_user_br" readonly>
+		
+						</div>
+						
+						<div class="col-md-2">
+							<label for="cad_dt_trans_br">Data Solicitação</label> 
+							<input type="text" class="form-control input-sm" name="cad_dt_trans_br" id="cad_dt_trans_br" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="panel panel-info" id="dvDadosCadastrais">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><i class="flaticon flaticon-news icon-md" aria-hidden="true"></i>
+						<b>Dados da requisição</b>
+					</h3>
+				</div>
+				
+				<div class="panel-body">
+
+					<div id="divAvisoUser" class="paragraph-is-required system-message-information alert alert-info" role="alert">
+						<strong>ATENÇÃO!</strong> Somente o gestor responsável pelo fluxo da solicitação que será cancelada possui os privilégios necessários para executar o cancelamento. Certifique-se de indicar o gestor correto para aprovação. Em caso de dúvidas, entre em contato com o setor de TI para identificar o gestor responsável por cada fluxo.
+
+					</div>
+
+							<div class="form-group row">
+								<div class="col-md-12">
+									<div class="table-responsive">
+										<table tablename="tbCancela" class="table table-hover table-condensed" id="tbCancela" noaddbutton="true" nodeletebutton="true">
+											<thead>
+												<tr class="active">
+													<th class="" style="min-width: 400px">N° Solicitação</th>
+													<th class="" style="min-width: 400px">Processo</th>
+													<th class=""></th>
+												</tr>				        				
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<input type="hidden" id="idtbCancela" name="idtbCancela">
+		
+														<div class="input-group">	
+															<div class="form-group" id="dvHasError_numSolic">
+																<input name="numSolic" id="numSolic" type="text" class="form-control input-sm" readonly>
+															</div>	
+															<span id="btnnumSolic" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="numSolic">
+																<span class="fluigicon fluigicon-zoom-in "></span>
+															</span>
+														</div>	
+													</td>
+
+													<td>
+														<div class="input-group">	
+															<div class="form-group" id="dvHasError_processo">
+																<input name="processo" id="processo" type="text" class="form-control input-sm" readonly>
+															</div>	
+															<span id="btnprocesso" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="processo">
+																<span class="fluigicon fluigicon-zoom-in "></span>
+															</span>
+														</div>
+													</td>
+													
+													<td>
+														<span class="input-group-addon fluigicon fluigicon-trash btn btn-danger" style="width: 10px" onclick="delTableRow(this);"></span>
+													</td>	
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td class="pull-left">
+														<button onclick="addTableRow('tbCancela'); init()" class="btn btn-sm btn-default" name="btnAdicionaSoli" id="btnAdicionaSoli" type="button"><span class="fluigicon fluigicon-plus"></span> Adicionar solicitação
+														</button>
+													</td>
+												</tr>				        				
+											</tfoot>
+										</table>
+									</div> <!--table responsive-->
+								</div> <!-- col -->
+							</div> <!-- row -->
+
+							<div class="form-group row">
+								<div class="col-md-12">
+									<label for="justificativa" class="control-label">Justificativa</label>
+		
+									<textarea class="form-control ativ0" rows="4" name="justificativa" id="justificativa"
+										required="required" value=""></textarea>
+								</div>
+								</div>
+
+					</div>
+				</div>
+			
+		</div>
+	</form>
+</body>
+</html>
+
+
+
+		

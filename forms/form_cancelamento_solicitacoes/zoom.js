@@ -58,61 +58,32 @@ function retornaSO() {
 function setSelectedZoomItem(selectedItem) {
 	var tipo = selectedItem.type;
 
-
-	if (tipo.substring(0,4) == "item" ) {
+	if (tipo.substring(0,8) == "numSolic" ) {
 	    var idx = tipo.substring(tipo.lastIndexOf("___"), tipo.length);
-	    $("#item" + idx).val(selectedItem.descItem);
-	    $("#it_codigo" + idx).val(selectedItem.itCodigo);
-
-		console.log(selectedItem.campoPesquisa);
-		console.log(tipo);
-		console.log($("#item" + idx));
-		console.log("tipo:", tipo);
-		console.log("substring(0,4):", tipo.substring(0, 4));
-		console.log("idx:", idx);
-	    
-	}
-	
-
-	if (tipo.substring(0,11) == "localizacao" ) {
-	    var idx = tipo.substring(tipo.lastIndexOf("___"), tipo.length);
-		$("#localizacao" + idx).val(selectedItem.localizacao);
-		$("#deposito" + idx).val(selectedItem.deposCod);
-		$("#lote" + idx).val(selectedItem.loteLoc);
-		$("#dt_validade" + idx).val(selectedItem.dataValidade.split(" ")[0]);
-		$("#cod_estabel" + idx).val(selectedItem.codEstab);
-		$("#qtd" + idx).val(selectedItem.quant);
+		$("#numSolic" + idx      ).val("");
+        $("#processo" + idx      ).val("");
+		$("#numSolic" + idx).val(selectedItem.numeroSolicitacao);
+        $("#processo" + idx).val(selectedItem.codigoProcesso);
 	}
 
 }
 
 function zooms(ev, idObj){
 
-	if ( ev == 'item' && fnBtnLiberado("btnitem") ) {
-		if(getWKNumState() == 0 || getWKNumState() == 1){
-			var filtro = "descItem,";
-			modalzoom.open("ems_consulta_cadastro_item", "descItem,Nome,itCodigo,Codigo", "item", "Pesquisa Itens", filtro , 'item_' + idObj , "" , "", "descItem" );
+	
+	if ( ev == 'numSolic' && fnBtnLiberado("btnnumSolic") ) {
+		if(getWKNumState() == 0 || getWKNumState() == 1 || getWKNumState() == 4){
+			var filtro = "numeroSolicitacao,";
+			console.log("Filtro:" + filtro);
+			modalzoom.open("fluig_consulta_solicitacoes", "numeroSolicitacao,Solicitação,codigoProcesso,Processo,solicitante,Solicitante", "numSolic", "Pesquisa Solicitações Abertas", filtro , 'numSolic_' + idObj , "" , "", "numeroSolicitacao" );
 		}
     }
 
-	if ( ev == 'localizacao' && fnBtnLiberado("btnlocalizacao") ) {
-		if(getWKNumState() == 0 || getWKNumState() == 1){
-			var idx = idObj.substring(idObj.lastIndexOf("___"), idObj.length);
-            var entrada_saida = $('input[name="entrada_saida' + idx + '"]:checked').val();
-            console.log("Entrada ou saída:" + entrada_saida);
-			var codItem = $("#it_codigo" + idx).val();
-            if(codItem != "" && codItem != undefined){
-
-			var filtro = "codItem," + codItem;
-			modalzoom.open("ems_consulta_localizacao_mov_item", "itemCod,Código Item,deposCod,Código Depósito,loteLoc,Lote,localizacao,Localização,dataValidade,Data de Validade,codEstab,Estabelecimento,quant,Quantidade", "localizacao", "Pesquisa Localização", filtro , 'localizacao_' + idObj , "" , "", "" );
-        }else{
-			FLUIGC.toast({
-				title: '',
-				message: "Item não atribuído. Favor atribuir o item antes das outras operações.",
-				type: 'warning',
-				timeout: 3000
-			});
-        }
+    if ( ev == 'usuario' && fnBtnLiberado("btnusuario") ) {
+		if(getWKNumState() == 0 || getWKNumState() == 1 || getWKNumState() == 4){
+			var filtro = "campoPesquisa,";
+			console.log("Filtro:" + filtro);
+			modalzoom.open("ems_consulta_usuario", "codUsuario,Login,nome,Nome,email,Email", "usuario", "Pesquisa Usuários", filtro , 'usuario_' +idObj , "" , "", "campoPesquisa" );
 		}
     }
 	

@@ -39,6 +39,7 @@
 			<input type="hidden" name="nomeCustos" id="nomeCustos">
 			<input type="hidden" name="loginCustos" id="loginCustos">
 			<input type="hidden" name="emailCustos" id="emailCustos">
+			<input type="hidden" name="statusProcesso" id="statusProcesso">
 
 			<input type="hidden" name="nomeGestor" id="nomeGestor">
 			<input type="hidden" name="loginGestor" id="loginGestor">
@@ -112,6 +113,7 @@
 											<th class="" style="min-width: 120px">Centro de Custo</th>
 											<th class="" style="min-width: 50px">Quantidade</th>
 											<th class="" style="min-width: 120px">Valor/Material </th>
+											<th class=""></th>
 										</tr>
 									</thead>						
 									<tbody>
@@ -132,11 +134,11 @@
 
 											<td>
 												<div class="row">									
-													<input type="radio" name="entrada_saida" value="1" id="entrada">
+													<input type="radio" name="entrada_saida" id="entrada_saida" value="1">
 													<label for="entrada">Entrada</label>
 											</div>
 											<div class="row">
-													<input type="radio" name="entrada_saida" value="2" id="saida" >
+													<input type="radio" name="entrada_saida" id="entrada_saida" value="2">
 													<label for="saida">Saída</label>
 											
 											</div>		
@@ -147,6 +149,7 @@
 												<div class="input-group">	
 													<div class="form-group" id="dvHasError_localizacao">
 														<input name="localizacao" id="localizacao" type="text" class="form-control input-sm">
+														<input name="qtd" id="qtd" type="hidden" class="form-control input-sm" readonly>
 													</div>	
 													<span id="btnlocalizacao" class="input-group-addon group-zoom no-view zoom-click btn-info" data-event="localizacao" readonly>
 														<span class="fluigicon fluigicon-zoom-in "></span>
@@ -159,6 +162,9 @@
 											<td><input type="text" class="form-control" name="centro_custo" id="centro_custo" ></td>
 											<td><input type="text" class="form-control" name="quantidade" id="quantidade" ></td>
 											<td><input type="text" class="form-control money" name="valor_material" id="valor_material" ></td>
+											<td>
+												<button onclick="validaSaldo(this);" id="btnValidaSaldo" name="btnValidaSaldo" class="btn btn-info" type="button" style="margin-bottom: 20px;">Validar saldo do item</button>
+											</td>
 										</tr>
 									</tbody>
 								</table>

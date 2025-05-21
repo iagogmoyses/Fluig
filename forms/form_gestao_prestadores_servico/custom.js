@@ -30,8 +30,8 @@ $(document).ready(function(){
 				if($("#_NR33Tb___"   + index).attr("checked")=="checked") $("#aprov_nr").val("true");
 				if($("#_NR18Tb___"   + index).attr("checked")=="checked") $("#aprov_nr").val("true");
 				if($("#_NR11Tb___"   + index).attr("checked")=="checked") $("#aprov_nr").val("true");
-				if($("_NR10BTb___"   + index).attr("checked")=="checked") $("#aprov_nr").val("true");
-				if($("_NR10SEPTb___" + index).attr("checked")=="checked") $("#aprov_nr").val("true");
+				if($("#_NR10BTb___"   + index).attr("checked")=="checked") $("#aprov_nr").val("true");
+				if($("#_NR10SEPTb___" + index).attr("checked")=="checked") $("#aprov_nr").val("true");
 			}
 		});		
 	} 

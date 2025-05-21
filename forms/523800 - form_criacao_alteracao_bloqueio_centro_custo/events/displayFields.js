@@ -12,17 +12,20 @@ function displayFields(form,customHTML){
 	
 	customHTML.append("<script>function getModePage(){ return '" + form.getFormMode() + "'; } </script>");
     customHTML.append('<script>document.getElementById("dvAprov").style.display  = "none";</script>');
+	customHTML.append('<script>document.getElementById("dvCriacao").style.display  = "none";</script>');
+	customHTML.append('<script>document.getElementById("dvAlteracao").style.display  = "none";</script>');
+	customHTML.append('<script>document.getElementById("dvBloqueio").style.display  = "none";</script>');
+	customHTML.append("<script>function getModePage(){ return '" + form.getFormMode() + "'; } </script>");
+	customHTML.append("<script>function mobile(){ return '" + form.getMobile() + "'; } </script>");
+	customHTML.append("<script>function getProcess(){ return " + getValue("WKNumProces") + "; }</script>");
 
 	if(form.getFormMode() == "VIEW"){
-		if(form.getValue("rb_tipo_solic") == "criacao"){
-			form.setVisibleById("dvCriacao", true);
-	}
-		else if(form.getValue("rb_tipo_solic") == "alteracao"){
-			form.setVisibleById("dvAlteracao", true);
-		}
-		else{
-			form.setVisibleById("dvBloqueio", true);
-}
+		if(form.getValue("rb_tipo_solic") == "criacao") customHTML.append('<script>document.getElementById("dvCriacao").style.display  = "";</script>');
+	
+		else if(form.getValue("rb_tipo_solic") == "alteracao") customHTML.append('<script>document.getElementById("dvAlteracao").style.display  = "";</script>');
+		else customHTML.append('<script>document.getElementById("dvBloqueio").style.display  = "";</script>');
+		customHTML.append('<script>document.getElementById("dvAprov").style.display  = "";</script>');
+
 	}
 
 
@@ -87,24 +90,10 @@ function displayFields(form,customHTML){
 		form.setValue("dt_aprovador_custos", data);
 		form.setValue('aprovador_custos_login', login);
         customHTML.append('<script>document.getElementById("dvAprov").style.display  = "";</script>');
-        if(form.getValue("rb_tipo_solic") == "criacao"){
-            form.setVisibleById("dvCriacao", true);
-        }
-        else if(form.getValue("rb_tipo_solic") == "alteracao"){
-            form.setVisibleById("dvAlteracao", true);
-            if(form.getValue("rb_tipo_alteracao") == "cod"){
-                form.setVisibleById("dvAlteraCod", true);
-            }else if(form.getValue("rb_tipo_alteracao") == "titulo"){
-                form.setVisibleById("dvAlteraTitulo", true);
-            }else if(form.getValue("rb_tipo_alteracao") == "dtIni"){
-                form.setVisibleById("dvAlteraDtIni", true);
-            }else if(form.getValue("rb_tipo_alteracao") == "dtFim"){
-                form.setVisibleById("dvAlteraDtFim", true);
-            }
-        }
-        else{
-            form.setVisibleById("dvBloqueio", true);
-        }
+        if(form.getValue("rb_tipo_solic") == "criacao") customHTML.append('<script>document.getElementById("dvCriacao").style.display  = "";</script>');
+        
+        else if(form.getValue("rb_tipo_solic") == "alteracao") customHTML.append('<script>document.getElementById("dvAlteracao").style.display  = "";</script>');
+        else customHTML.append('<script>document.getElementById("dvBloqueio").style.display  = "";</script>');
     }
 
     if(atividade == 14){

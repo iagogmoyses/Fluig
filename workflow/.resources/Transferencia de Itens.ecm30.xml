@@ -1,0 +1,666 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>Transferencia de Itens</processId>
+    </processDefinitionPK>
+    <processDescription>Transferencia de Itens</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>false</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>Custos</categoryId>
+    <managerEngineAllocationId></managerEngineAllocationId>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>false</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>1</complementsLevel>
+    <notifyRequisitionerComplements>true</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>true</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>Transferencia de Itens</processId>
+      <version>10</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>593048</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>1</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>true</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </processStatePK>
+      <stateName>Início</stateName>
+      <stateDescription>Início</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>140</positionX>
+      <positionY>235</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </processStatePK>
+      <stateName>Aprovação Gestor</stateName>
+      <stateDescription>Aprovação Gestor</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>280</positionX>
+      <positionY>210</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <sequence>14</sequence>
+      </processStatePK>
+      <stateName>Avaliação Custos</stateName>
+      <stateDescription>Avaliação Custos</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;cadastro_itens_custos&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>510</positionX>
+      <positionY>210</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <sequence>17</sequence>
+      </processStatePK>
+      <stateName>Reprovado</stateName>
+      <stateDescription>Reprovado</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>303</positionX>
+      <positionY>350</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <sequence>6</sequence>
+      </processStatePK>
+      <stateName>Finalizar Solicitação</stateName>
+      <stateDescription>Finalizar Solicitação</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>411</positionX>
+      <positionY>110</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>10</version>
+        <sequence>17</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;cad_user_br&quot;) != &quot;&quot;</condition>
+      <destinationSequenceId>1</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;cad_user_br&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>13</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>1</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>15</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>14</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>16</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>14</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>18</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>14</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>19</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>17</initialStateSequence>
+      <finalStateSequence>1</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>20</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+        <linkSequence>21</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterTaskComplete</eventId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterTaskComplete(colleagueId,nextSequenceId,userList){&#xd;
+	var atividade = getValue(&quot;WKNumState&quot;);&#xd;
+	var status = hAPI.getCardValue(&quot;statusProcesso&quot;);&#xd;
+	&#xd;
+	if(atividade == 2 &amp;&amp; nextSequenceId == 6 ){&#xd;
+		try{&#xd;
+			&#xd;
+		var gestor = getValue(&quot;WKUser&quot;);&#xd;
+		var gestorName = hAPI.getCardValue(&quot;nomeGestor&quot;);&#xd;
+		var user = hAPI.getCardValue(&quot;emailRequester&quot;);&#xd;
+		var nomeUser = hAPI.getCardValue(&quot;cad_nom_user_br&quot;);&#xd;
+		var solic = hAPI.getCardValue(&quot;numDocumento&quot;);&#xd;
+		var dataSolic = hAPI.getCardValue(&quot;cad_dt_trans_br&quot;);&#xd;
+		var link = &quot;http://fluig.fornodeminas.com.br/portal/p/01/pageworkflowview?app_ecm_workflowview_detailsProcessInstanceID=&quot; + solic; &#xd;
+		&#xd;
+		var parametros = new java.util.HashMap();&#xd;
+		parametros.put(&quot;subject&quot;, &quot;TAREFA RECUSADA PELO GESTOR &quot; + gestor);&#xd;
+		parametros.put(&quot;SOLICITANTE&quot;, nomeUser);&#xd;
+		parametros.put(&quot;APROVADOR&quot;, gestor);&#xd;
+		parametros.put(&quot;NUM_SOLIC&quot;, solic);&#xd;
+		parametros.put(&quot;DT_SOLIC&quot;, dataSolic);&#xd;
+		parametros.put(&quot;LINK&quot;, link);&#xd;
+		parametros.put(&quot;GESTOR&quot;, gestorName);&#xd;
+		&#xd;
+		var destinatarios = new java.util.ArrayList();&#xd;
+		destinatarios.add(user);&#xd;
+		&#xd;
+		notifier.notify(gestor, &quot;TPL_EMAIL_RECUSA_TRANSF_ITENS&quot;, parametros, destinatarios, &quot;text/html&quot;);&#xd;
+		}catch(e){&#xd;
+		    log.error(&quot;MAVM - Erro ao enviar email RECUSA_TRANSF_ITENS: &quot; + e.message);&#xd;
+		 	}&#xd;
+&#xd;
+	}&#xd;
+	&#xd;
+	if(atividade == 14 &amp;&amp; nextSequenceId == 6){&#xd;
+		try{&#xd;
+			if(status == &quot;ERRO&quot;) return;&#xd;
+			&#xd;
+			var userCustos = getValue(&quot;WKUser&quot;);&#xd;
+			var userCustosName = hAPI.getCardValue(&quot;nomeCustos&quot;);&#xd;
+			var user = hAPI.getCardValue(&quot;emailRequester&quot;);&#xd;
+			var solic = hAPI.getCardValue(&quot;numDocumento&quot;);&#xd;
+			var dataSolic = hAPI.getCardValue(&quot;cad_dt_trans_br&quot;);&#xd;
+			var link = &quot;http://fluig.fornodeminas.com.br/portal/p/01/pageworkflowview?app_ecm_workflowview_detailsProcessInstanceID=&quot; + solic; &#xd;
+			&#xd;
+			var parametros = new java.util.HashMap();&#xd;
+			parametros.put(&quot;subject&quot;, &quot;TAREFA FINALIZADA POR &quot; + userCustos);&#xd;
+			parametros.put(&quot;SOLICITANTE&quot;, user);&#xd;
+			parametros.put(&quot;APROVADOR&quot;, userCustos);&#xd;
+			parametros.put(&quot;NUM_SOLIC&quot;, solic);&#xd;
+			parametros.put(&quot;DT_SOLIC&quot;, dataSolic);&#xd;
+			parametros.put(&quot;LINK&quot;, link);&#xd;
+			parametros.put(&quot;USERCUSTOS&quot;, userCustosName);&#xd;
+			&#xd;
+			var destinatarios = new java.util.ArrayList();&#xd;
+			destinatarios.add(user);&#xd;
+			&#xd;
+			notifier.notify(userCustos, &quot;TPL_EMAIL_FINALIZA_TRANSF_ITENS&quot;, parametros, destinatarios, &quot;text/html&quot;);&#xd;
+			}catch(e){&#xd;
+			    log.error(&quot;MAVM - Erro ao enviar email FINALIZA_TRANSF_ITENS: &quot; + e.message);&#xd;
+			 	}&#xd;
+	}&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterTaskSave</eventId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterTaskSave(colleagueId,nextSequenceId,userList){&#xd;
+	&#xd;
+	var numProcesso = getValue(&quot;WKNumProces&quot;);	&#xd;
+	&#xd;
+	if (numProcesso != null &amp;&amp; numProcesso != &quot;&quot; &amp;&amp; numProcesso != &quot;0&quot;){&#xd;
+		hAPI.setCardValue(&quot;num_solicitacao&quot;, numProcesso);&#xd;
+	}		&#xd;
+	&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeStateEntry</eventId>
+        <processId>Transferencia de Itens</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeStateEntry(sequenceId){&#xd;
+		var arrayProduto	    = new Array();&#xd;
+		var numProcesso = getValue(&quot;WKNumProces&quot;);&#xd;
+		var atividade = parseInt(getValue(&quot;WKNumState&quot;)); &#xd;
+		var atividade_destino = parseInt(getValue(&quot;WKNextState&quot;));&#xd;
+		var message = &quot;&quot;;&#xd;
+		&#xd;
+		&#xd;
+			&#xd;
+		if ( atividade == 14 &amp;&amp; sequenceId == 6){&#xd;
+			try{&#xd;
+						&#xd;
+			&#xd;
+			var fieldsForm          = hAPI.getCardData(parseInt(getValue(&quot;WKNumProces&quot;)));&#xd;
+			var fields		        = fieldsForm.keySet().iterator();&#xd;
+			&#xd;
+			while (fields.hasNext()) {&#xd;
+			    &#xd;
+			    var id = fields.next();&#xd;
+			    &#xd;
+			    if (id.match(/idtbTransacoesDiversas___/)) {&#xd;
+					var aux = id.split(&quot;___&quot;);&#xd;
+					id = aux[1];				&#xd;
+					var camposTabela = new Object();				&#xd;
+					camposTabela.id = new String (fieldsForm.get(&quot;idtbTransacoesDiversas___&quot; + id));&#xd;
+					&#xd;
+					log.info(&quot;==========&gt; Id: &quot; + id);&#xd;
+					log.info(&quot;==========&gt; Campos tabela: &quot; + camposTabela.id);&#xd;
+					&#xd;
+					camposTabela[&quot;numDocumento&quot;]		 = new String(fieldsForm.get(&quot;numDocumento&quot;));&#xd;
+					camposTabela[&quot;entrada-saida&quot;]		 = new String(fieldsForm.get(&quot;entrada_saida___&quot; + id));&#xd;
+					camposTabela[&quot;it-codigo&quot;]		     = new String(fieldsForm.get(&quot;it_codigo___&quot; + id));&#xd;
+					camposTabela[&quot;cod-estabel&quot;]		     = new String(fieldsForm.get(&quot;cod_estabel___&quot; + id));&#xd;
+					camposTabela[&quot;localizacao&quot;]			 = new String(fieldsForm.get(&quot;localizacao___&quot; + id));&#xd;
+					camposTabela[&quot;deposito&quot;]			 = new String(fieldsForm.get(&quot;deposito___&quot; + id));&#xd;
+					camposTabela[&quot;lote&quot;]	     		 = new String(fieldsForm.get(&quot;lote___&quot; + id));				&#xd;
+					camposTabela[&quot;dt-validade&quot;]	 		 = new String(fieldsForm.get(&quot;dt_validade___&quot; + id));&#xd;
+					camposTabela[&quot;centro-custo&quot;]	     = new String(fieldsForm.get(&quot;centro_custo___&quot; + id));	&#xd;
+					camposTabela[&quot;quantidade&quot;]		     = new String(fieldsForm.get(&quot;quantidade___&quot; + id));&#xd;
+					camposTabela[&quot;cad_user_br&quot;]		     = new String(fieldsForm.get(&quot;cad_user_br&quot;));&#xd;
+					&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;numDocumento&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;cad_user_br&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;entrada-saida&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;it-codigo&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;cod-estabel&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;localizacao&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;deposito&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;lote&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;dt-validade&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;centro-custo&quot;]);&#xd;
+					log.info(&quot;DocIago123 - &quot; + camposTabela[&quot;quantidade&quot;]);&#xd;
+					//camposTabela[&quot;un&quot;]		     		 = new String(&quot;&quot;);&#xd;
+					//camposTabela[&quot;valor-material&quot;]		 = new String(fieldsForm.get(&quot;valor_material___&quot; + id));&#xd;
+					//camposTabela[&quot;conta-contabil&quot;]		 = new String(fieldsForm.get(&quot;conta_contabil&quot;));				&#xd;
+					&#xd;
+					&#xd;
+					arrayProduto.push(camposTabela);&#xd;
+				&#xd;
+			    }&#xd;
+			    &#xd;
+			}&#xd;
+			&#xd;
+			var paramItem = new Object();&#xd;
+			paramItem.dataType = &quot;longchar&quot;;&#xd;
+			paramItem.name = &quot;pItens&quot;;&#xd;
+			paramItem.type = &quot;input&quot;;&#xd;
+			paramItem.value = JSON.stringify(arrayProduto);&#xd;
+			&#xd;
+			var iSeq = new Object();&#xd;
+			iSeq.type = &quot;integer&quot;;&#xd;
+			iSeq.name = &quot;iseq&quot;;&#xd;
+			iSeq.label = &quot;iseq&quot;;&#xd;
+			&#xd;
+			var codErro = new Object();&#xd;
+			codErro.type = &quot;integer&quot;;&#xd;
+			codErro.name = &quot;codErro&quot;;&#xd;
+			codErro.label = &quot;codErro&quot;;	&#xd;
+			&#xd;
+			var msgErro = new Object();&#xd;
+			msgErro.type = &quot;character&quot;;&#xd;
+			msgErro.name = &quot;msgErro&quot;;&#xd;
+			msgErro.label = &quot;msgErro&quot;;	    &#xd;
+			&#xd;
+			var camposTempTable = new Object();&#xd;
+			camposTempTable.name = &quot;tt-erro2&quot;;&#xd;
+			camposTempTable.records = new Array();&#xd;
+			camposTempTable.fields = [iSeq, codErro, msgErro];&#xd;
+			&#xd;
+			var  ttErro2 = new Object();&#xd;
+			ttErro2.dataType = &quot;temptable&quot;;&#xd;
+			ttErro2.name = &quot;tt-erro2&quot;;&#xd;
+			ttErro2.type = &quot;output&quot;;&#xd;
+			ttErro2.value = camposTempTable;	 &#xd;
+		 &#xd;
+			&#xd;
+			var params = [paramItem, ttErro2];	    	&#xd;
+			&#xd;
+			var jsonParams = JSON.stringify(params);&#xd;
+			log.info(&quot;JSON enviado para o Progress: &quot; + jsonParams);&#xd;
+						&#xd;
+			    var serviceProvider = ServiceManager.getService(&apos;WSEXECBO&apos;);&#xd;
+			    var serviceLocator = serviceProvider.instantiate(&apos;com.totvs.framework.ws.execbo.service.WebServiceExecBO&apos;);&#xd;
+			    var service = serviceLocator.getWebServiceExecBOPort();			&#xd;
+			    var token = service.userLogin(&quot;acordosfluig&quot;);&#xd;
+			    var response = service.callProcedureWithToken(token, &quot;especificos/ems2/fluig/transfere-item.p&quot;, &quot;TransfereItem&quot;, jsonParams);&#xd;
+			    &#xd;
+			    log.info(&quot;Response - &quot; + response);&#xd;
+			   &#xd;
+			    &#xd;
+			}catch(e){&#xd;
+				hAPI.setCardValue(&quot;statusProcesso&quot;, &quot;ERRO&quot;);&#xd;
+			    throw &quot;ERRO AO INTEGRAR OS DADOS COM ERP. MENSAGEM: &quot; + e.message;&#xd;
+			}&#xd;
+			var objResp = JSON.parse(response);&#xd;
+			log.info(&quot;ObjResp - &quot; + objResp);&#xd;
+			var errosObj = JSON.parse(objResp[0].value);&#xd;
+			var records = errosObj.records;&#xd;
+			&#xd;
+			log.info(&quot;--- records: &quot; + JSON.stringify(records));&#xd;
+			&#xd;
+			if (!response){&#xd;
+				log.info(&quot;Iago - Response vazio - Operação concluída !&quot;);&#xd;
+				return;&#xd;
+			}&#xd;
+&#xd;
+			&#xd;
+			for (var i = 0; i &lt; records.length; i++) {&#xd;
+				message = message + new String(records[i].codErro) + &quot; - &quot; + new String(records[i].msgErro);&#xd;
+			}&#xd;
+			&#xd;
+			if(message != &quot;&quot;){ &#xd;
+				hAPI.setCardValue(&quot;statusProcesso&quot;, &quot;ERRO&quot;);&#xd;
+				throw &quot;ERRO AO INTEGRAR OS DADOS COM ERP. MENSAGEM: &quot; + message;&#xd;
+			}&#xd;
+		    &#xd;
+		&#xd;
+		&#xd;
+		}&#xd;
+			&#xd;
+	&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+</list>

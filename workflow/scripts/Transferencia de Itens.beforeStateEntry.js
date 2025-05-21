@@ -3,11 +3,12 @@ function beforeStateEntry(sequenceId){
 		var numProcesso = getValue("WKNumProces");
 		var atividade = parseInt(getValue("WKNumState")); 
 		var atividade_destino = parseInt(getValue("WKNextState"));
+		var message = "";
 		
 		
-		try{
 			
 		if ( atividade == 14 && sequenceId == 6){
+			try{
 						
 			
 			var fieldsForm          = hAPI.getCardData(parseInt(getValue("WKNumProces")));
@@ -65,9 +66,35 @@ function beforeStateEntry(sequenceId){
 			paramItem.name = "pItens";
 			paramItem.type = "input";
 			paramItem.value = JSON.stringify(arrayProduto);
+			
+			var iSeq = new Object();
+			iSeq.type = "integer";
+			iSeq.name = "iseq";
+			iSeq.label = "iseq";
+			
+			var codErro = new Object();
+			codErro.type = "integer";
+			codErro.name = "codErro";
+			codErro.label = "codErro";	
+			
+			var msgErro = new Object();
+			msgErro.type = "character";
+			msgErro.name = "msgErro";
+			msgErro.label = "msgErro";	    
+			
+			var camposTempTable = new Object();
+			camposTempTable.name = "tt-erro2";
+			camposTempTable.records = new Array();
+			camposTempTable.fields = [iSeq, codErro, msgErro];
+			
+			var  ttErro2 = new Object();
+			ttErro2.dataType = "temptable";
+			ttErro2.name = "tt-erro2";
+			ttErro2.type = "output";
+			ttErro2.value = camposTempTable;	 
 		 
 			
-			var params = [paramItem];	    	
+			var params = [paramItem, ttErro2];	    	
 			
 			var jsonParams = JSON.stringify(params);
 			log.info("JSON enviado para o Progress: " + jsonParams);
@@ -78,10 +105,38 @@ function beforeStateEntry(sequenceId){
 			    var token = service.userLogin("acordosfluig");
 			    var response = service.callProcedureWithToken(token, "especificos/ems2/fluig/transfere-item.p", "TransfereItem", jsonParams);
 			    
+			    log.info("Response - " + response);
+			   
+			    
+			}catch(e){
+				hAPI.setCardValue("statusProcesso", "ERRO");
+			    throw "ERRO AO INTEGRAR OS DADOS COM ERP. MENSAGEM: " + e.message;
+			}
+			var objResp = JSON.parse(response);
+			log.info("ObjResp - " + objResp);
+			var errosObj = JSON.parse(objResp[0].value);
+			var records = errosObj.records;
 			
-		    }
-		} catch(e){
-		    throw "ERRO AO INTEGRAR OS DADOS COM ERP. MENSAGEM: " + e.message;
+			log.info("--- records: " + JSON.stringify(records));
+			
+			if (!response){
+				log.info("Iago - Response vazio - Operação concluída !");
+				return;
+			}
+
+			
+			for (var i = 0; i < records.length; i++) {
+				message = message + new String(records[i].codErro) + " - " + new String(records[i].msgErro);
+			}
+			
+			if(message != ""){ 
+				hAPI.setCardValue("statusProcesso", "ERRO");
+				throw "ERRO AO INTEGRAR OS DADOS COM ERP. MENSAGEM: " + message;
+			}
+		    
+		
+		
 		}
+			
 	
 }
